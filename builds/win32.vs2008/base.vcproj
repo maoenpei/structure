@@ -170,19 +170,19 @@
 			Name="files"
 			>
 			<File
-				RelativePath="..\..\src\view\CDevice.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\view\CDevice.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\view\CLoopManager.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\view\CLoopManager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\view\CPlatform.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\view\CPlatform.h"
 				>
 			</File>
 			<File
@@ -214,15 +214,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\view\IDevice.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\view\ILoopManager.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\core\IMutableData.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\view\IPlatform.h"
 				>
 			</File>
 			<File
@@ -259,11 +259,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\WinDevice.cpp"
+			RelativePath=".\WinPlatform.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\WinDevice.h"
+			RelativePath=".\WinPlatform.h"
 			>
 		</File>
 		<File

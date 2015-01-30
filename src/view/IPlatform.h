@@ -1,5 +1,5 @@
-#ifndef __BASE_I_DEVICE_H__
-#define __BASE_I_DEVICE_H__
+#ifndef __BASE_I_PLATFORM_H__
+#define __BASE_I_PLATFORM_H__
 
 #include "core/IRef.h"
 #include "IWindow.h"
@@ -7,7 +7,7 @@
 
 namespace view{
 	
-	class IDevice : public virtual core::IRef
+	class IPlatform : public virtual core::IRef
 	{
 	public:
 		virtual IWindow *getWindow() = 0;
@@ -20,7 +20,7 @@ namespace view{
 	};
 
 // find interface by name using IRegistry
-#define IDEVICE_NAME		"::IDevicePointer"
+#define IPLATFORM_NAME		"::IPlatformInstance"
 
 };
 

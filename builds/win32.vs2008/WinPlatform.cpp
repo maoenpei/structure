@@ -1,6 +1,6 @@
 
 
-#include "WinDevice.h"
+#include "WinPlatform.h"
 #include "WinWindow.h"
 #include "view/CLoopManager.h"
 
@@ -14,13 +14,13 @@ static int GetMilliCounter()
 
 namespace win32{
 
-	WinDevice::WinDevice()
+	WinPlatform::WinPlatform()
 	{}
 
-	int WinDevice::run(int w, int h)
+	int WinPlatform::run(int w, int h)
 	{
 		core::IRegistry *reg = getRegistry();
-		reg->regist(this, IDEVICE_NAME);
+		reg->regist(this, IPLATFORM_NAME);
 		
 		WinWindow * window = new WinWindow(w, h);
 		Window = window;

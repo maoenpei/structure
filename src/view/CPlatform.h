@@ -1,13 +1,13 @@
-#ifndef __BASE_DEVICE_H__
-#define __BASE_DEVICE_H__
+#ifndef __BASE_PLATFORM_H__
+#define __BASE_PLATFORM_H__
 
-#include "IDevice.h"
+#include "IPlatform.h"
 #include "core/CStaticObject.h"
 #include "core/TAuto.h"
 
 namespace view{
 
-	class CDevice : public core::CStaticObject, public virtual IDevice
+	class CPlatform : public core::CStaticObject, public virtual IPlatform
 	{
 	public:
 		virtual IWindow *getWindow();
@@ -18,7 +18,7 @@ namespace view{
 
 		virtual void terminate();
 
-		CDevice();
+		CPlatform();
 
 	protected:
 		core::TAuto<IWindow> Window;
