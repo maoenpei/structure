@@ -9,8 +9,9 @@ namespace view{
 	class ILoopManager : public virtual core::IRef
 	{
 	public:
-		virtual void addLoopItem(core::IRunnable *runnable) = 0;
-		virtual void addLoopItem(core::IRunnable *runnable, float dt, bool repeat) = 0;
+		virtual unsigned int addLoopItem(core::IRunnable *runnable) = 0;
+		virtual unsigned int addLoopItem(core::IRunnableInt *irunnable, float dt, bool repeat) = 0;
+		virtual void removeLoopKey(unsigned int key) = 0;
 	};
 	
 }

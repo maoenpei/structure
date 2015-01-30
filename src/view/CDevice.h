@@ -13,10 +13,18 @@ namespace view{
 		virtual IWindow *getWindow();
 		
 		virtual ILoopManager *getLoopManager();
+		
+		virtual void setTimeInterval(float dt);
+
+		virtual void terminate();
+
+		CDevice();
 
 	protected:
 		core::TAuto<IWindow> Window;
 		core::TAuto<ILoopManager> Looper;
+		int MilliInterval;
+		bool isTerminate;
 	};
 	
 };

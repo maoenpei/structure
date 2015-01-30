@@ -13,10 +13,10 @@ namespace view{
 		virtual IWindow *getWindow() = 0;
 		
 		virtual ILoopManager *getLoopManager() = 0;
+		virtual void setTimeInterval(float dt) = 0;
+		virtual void terminate() = 0;
 		
 		//virtual ISceneManager *getSceneManager() = 0;
-
-		virtual void terminate() = 0;
 	};
 
 // find interface by name using IRegistry

@@ -2,27 +2,34 @@
 
 #include "WinDevice.h"
 #include "WinWindow.h"
+#include "view/CLoopManager.h"
+
+static int GetMilliCounter()
+{
+	LARGE_INTEGER liTime, liFreq;
+	QueryPerformanceFrequency( &liFreq );
+	QueryPerformanceCounter( &liTime );
+	return (int)(liTime.QuadPart * 1000.0 / liFreq.QuadPart);
+}
 
 namespace win32{
 
 	WinDevice::WinDevice()
-		: isTerminate(false)
 	{}
-
-	void WinDevice::terminate()
-	{
-		isTerminate = true;
-	}
 
 	int WinDevice::run(int w, int h)
 	{
 		core::IRegistry *reg = getRegistry();
 		reg->regist(this, IDEVICE_NAME);
-
-		core::TAuto<WinWindow> window = new WinWindow(w, h);
+		
+		WinWindow * window = new WinWindow(w, h);
 		Window = window;
 
+		view::CLoopManager * looper = new view::CLoopManager();
+		Looper = looper;
+		
 		window->createWindow();
+		int milli, milli2;
 		bool quit = false;
 		bool hasMessage;
 		while(1){
@@ -33,11 +40,17 @@ namespace win32{
 			if (hasMessage && quit){
 				break;
 			}else if (!hasMessage){
-				::Sleep(1);
+				milli = GetMilliCounter();
+				looper->doLoop(milli);
+				milli2 = GetMilliCounter();
+				if (milli2 - milli < MilliInterval){
+					::Sleep(MilliInterval - (milli2 - milli));
+				}
 			}
 		}
 		window->destroyWindow();
 		reg->releaseAll();
+		
 		return 0;
 	}
 

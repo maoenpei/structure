@@ -178,6 +178,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\view\CLoopManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\view\CLoopManager.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\CRefObject.cpp"
 				>
 			</File>

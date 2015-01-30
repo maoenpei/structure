@@ -10,6 +10,18 @@ namespace core{
 	public:
 		virtual void run() = 0;
 	};
+
+	class IRunnableInt : public virtual IRef
+	{
+	public:
+		virtual void run(int value) = 0;
+	};
+
+	class IRunnableFloat : public virtual IRef
+	{
+	public:
+		virtual void run(float value) = 0;
+	};
 	
 };
 

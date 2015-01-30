@@ -13,12 +13,7 @@ namespace win32{
 	public:
 		WinDevice();
 
-		void terminate();
-
 		int run(int w, int h);
-
-	private:
-		bool isTerminate;
 	};
 
 };
