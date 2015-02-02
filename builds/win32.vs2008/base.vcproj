@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../src"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WINGL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -259,19 +259,27 @@
 			>
 		</File>
 		<File
-			RelativePath=".\WinPlatform.cpp"
+			RelativePath="..\..\src\view\WinGLWindow.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\WinPlatform.h"
+			RelativePath="..\..\src\view\WinGLWindow.h"
 			>
 		</File>
 		<File
-			RelativePath=".\WinWindow.cpp"
+			RelativePath="..\..\src\view\WinPlatform.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\WinWindow.h"
+			RelativePath="..\..\src\view\WinPlatform.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\view\WinWindow.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\view\WinWindow.h"
 			>
 		</File>
 	</Files>

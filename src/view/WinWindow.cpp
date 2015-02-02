@@ -7,7 +7,7 @@
 #define CLS_NAME L"MAIN_WINDOW"
 #define WIN_CAPTION L"MainWindow"
 
-#define WINOBJ_FROM_WINDOW(hwnd)		((win32::WinWindow *)(GetWindowLong(hwnd, GWL_USERDATA)))
+#define WINOBJ_FROM_WINDOW(hwnd)		((view::WinWindow *)(GetWindowLong(hwnd, GWL_USERDATA)))
 
 static LRESULT CALLBACK _WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -27,44 +27,14 @@ static LRESULT CALLBACK _WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 		case WM_KEYDOWN:
 		case WM_KEYUP:
 		case WM_CHAR:
-			win32::WinWindow *window;
+			view::WinWindow *window;
 			window = WINOBJ_FROM_WINDOW(hWnd);
 			return window->handleMsg(msg, wParam, lParam);
 	}
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-static void SetupPixelFormat(HDC hDC)
-{
-    int pixelFormat;
-
-    PIXELFORMATDESCRIPTOR pfd =
-    {   
-        sizeof(PIXELFORMATDESCRIPTOR),  // size
-        1,                          // version
-        PFD_SUPPORT_OPENGL |        // OpenGL window
-        PFD_DRAW_TO_WINDOW |        // render to window
-        PFD_DOUBLEBUFFER,           // support double-buffering
-        PFD_TYPE_RGBA,              // color type
-        32,                         // prefered color depth
-        0, 0, 0, 0, 0, 0,           // color bits (ignored)
-        0,                          // no alpha buffer
-        0,                          // alpha bits (ignored)
-        0,                          // no accumulation buffer
-        0, 0, 0, 0,                 // accum bits (ignored)
-        16,                         // depth buffer
-        0,                          // no stencil buffer
-        0,                          // no auxiliary buffers
-        PFD_MAIN_PLANE,             // main layer
-        0,                          // reserved
-        0, 0, 0,                    // no layer, visible, damage masks
-    };
-
-    pixelFormat = ChoosePixelFormat(hDC, &pfd);
-    SetPixelFormat(hDC, pixelFormat, &pfd);
-}
-
-namespace win32{
+namespace view{
 
 	WinWindow::WinWindow(int w, int h)
 		: Width(w)
@@ -78,7 +48,7 @@ namespace win32{
 		height = Height;
 	}
 
-	void WinWindow::setDispatcher(view::IWindowDispatcher *dispatcher)
+	void WinWindow::setDispatcher(IWindowDispatcher *dispatcher)
 	{
 		Dispatcher = dispatcher;
 	}
@@ -91,13 +61,13 @@ namespace win32{
 				Captured = true;
 				SetCapture(mHwnd);
 				if (Dispatcher){
-					Dispatcher->onPentouch(0, (int)LOWORD(lParam), (int)HIWORD(lParam), view::PenTouch_Down);
+					Dispatcher->onPentouch(0, (int)LOWORD(lParam), (int)HIWORD(lParam), PenTouch_Down);
 				}
 				break;
 			case WM_MOUSEMOVE:
 				if (Captured){
 					if (Dispatcher){
-						Dispatcher->onPentouch(0, (int)LOWORD(lParam), (int)HIWORD(lParam), view::PenTouch_Move);
+						Dispatcher->onPentouch(0, (int)LOWORD(lParam), (int)HIWORD(lParam), PenTouch_Move);
 					}
 				}
 				break;
@@ -106,20 +76,20 @@ namespace win32{
 					Captured = false;
 					ReleaseCapture();
 					if (Dispatcher){
-						Dispatcher->onPentouch(0, (int)LOWORD(lParam), (int)HIWORD(lParam), view::PenTouch_Up);
+						Dispatcher->onPentouch(0, (int)LOWORD(lParam), (int)HIWORD(lParam), PenTouch_Up);
 					}
 				}
 				break;
 			case WM_CHAR:
 				if (Dispatcher){
 					if (wParam == VK_RETURN){
-						Dispatcher->onInsertChar(NULL, view::InsertChar_Return);
+						Dispatcher->onInsertChar(NULL, InsertChar_Return);
 					}else if (wParam == VK_BACK){
-						Dispatcher->onInsertChar(NULL, view::InsertChar_Remove);
+						Dispatcher->onInsertChar(NULL, InsertChar_Remove);
 					}else{
 						char utf8_str[8];
 						WideCharToMultiByte(CP_UTF8, 0, (WCHAR *)(&wParam), 1, utf8_str, sizeof(utf8_str), 0, 0);
-						Dispatcher->onInsertChar(utf8_str, view::InsertChar_Input);
+						Dispatcher->onInsertChar(utf8_str, InsertChar_Input);
 					}
 				}
 				break;
@@ -160,19 +130,14 @@ namespace win32{
 
 		SetWindowLong(mHwnd, GWL_USERDATA, (LONG)this);
 
-		HDC hDC = GetDC(mHwnd);
-		SetupPixelFormat(hDC);
-		mHRC = wglCreateContext(hDC);
-		wglMakeCurrent(hDC, mHRC);
-
+		this->onCreateWnd(mHwnd);
+		
 		ShowWindow(mHwnd, SW_SHOW);
 	}
 
 	void WinWindow::destroyWindow()
 	{
-		HDC hDC = GetDC(mHwnd);
-		wglMakeCurrent(hDC, NULL);
-		wglDeleteContext(mHRC);
+		this->onDestroyWnd(mHwnd);
 
 		DestroyWindow(mHwnd);
 		HINSTANCE hInstance = GetModuleHandle(NULL);

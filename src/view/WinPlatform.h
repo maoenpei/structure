@@ -2,11 +2,11 @@
 #define __WIN_PLATFORM_H__
 
 #include "core/IRegistry.h"
-#include "view/CPlatform.h"
+#include "CPlatform.h"
 
-namespace win32{
+namespace view{
 
-	class WinPlatform : public view::CPlatform
+	class WinPlatform : public CPlatform
 	{
 	public:
 		WinPlatform();

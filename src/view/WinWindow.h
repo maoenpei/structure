@@ -1,18 +1,18 @@
 #ifndef __WIN_WINDOW_H__
 #define __WIN_WINDOW_H__
 
-#include "view/IWindow.h"
+#include "IWindow.h"
 #include "core/CRefObject.h"
 #include "core/TAuto.h"
 #include <windows.h>
 
-namespace win32{
+namespace view{
 
-	class WinWindow : public core::CRefObject, public virtual view::IWindow
+	class WinWindow : public core::CRefObject, public virtual IWindow
 	{
 	public:
 		virtual void getSize(int &width, int &height);
-		virtual void setDispatcher(view::IWindowDispatcher *dispatcher);
+		virtual void setDispatcher(IWindowDispatcher *dispatcher);
 
 		WinWindow(int w, int h);
 
@@ -20,13 +20,15 @@ namespace win32{
 		void destroyWindow();
 		bool dispatchMessage(bool &quit);
 
+		virtual void onCreateWnd(HWND hWnd) = 0;
+		virtual void onDestroyWnd(HWND hWnd) = 0;
+
 		LRESULT handleMsg(UINT msg, WPARAM wParam, LPARAM lParam);
 
 	private:
 		int Width, Height;
-		core::TAuto<view::IWindowDispatcher> Dispatcher;
+		core::TAuto<IWindowDispatcher> Dispatcher;
 		HWND mHwnd;
-		HGLRC mHRC;
 		bool Captured;
 	};
 

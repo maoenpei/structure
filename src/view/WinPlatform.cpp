@@ -1,8 +1,10 @@
 
 
 #include "WinPlatform.h"
-#include "WinWindow.h"
-#include "view/CLoopManager.h"
+#ifdef WINGL
+#include "WinGLWindow.h"
+#endif
+#include "CLoopManager.h"
 
 static int GetMilliCounter()
 {
@@ -12,7 +14,7 @@ static int GetMilliCounter()
 	return (int)(liTime.QuadPart * 1000.0 / liFreq.QuadPart);
 }
 
-namespace win32{
+namespace view{
 
 	WinPlatform::WinPlatform()
 	{}
@@ -22,10 +24,12 @@ namespace win32{
 		core::IRegistry *reg = getRegistry();
 		reg->regist(this, IPLATFORM_NAME);
 		
-		WinWindow * window = new WinWindow(w, h);
+#ifdef WINGL
+		WinWindow * window = new WinGLWindow(w, h);
+#endif
 		Window = window;
 
-		view::CLoopManager * looper = new view::CLoopManager();
+		CLoopManager * looper = new CLoopManager();
 		Looper = looper;
 		
 		window->createWindow();
