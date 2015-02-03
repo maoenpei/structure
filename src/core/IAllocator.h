@@ -11,10 +11,10 @@ namespace core{
 		virtual void *alloc(size_t siz) = 0;
 		virtual void free(void *ptr) = 0;
 	};
-
-#define IALLOCATOR_NAME		"::IALLOCATOR_RGLOBAL"
 	
 };
+
+#define IALLOCATOR_NAME		"::IALLOCATOR_RGLOBAL"
 
 #endif
 

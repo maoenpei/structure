@@ -21,7 +21,8 @@ namespace view{
 		bool dispatchMessage(bool &quit);
 
 		virtual void onCreateWnd(HWND hWnd) = 0;
-		virtual void onDestroyWnd(HWND hWnd) = 0;
+		virtual void onDestroyWnd() = 0;
+		virtual void onSwapBuffer() = 0;
 
 		LRESULT handleMsg(UINT msg, WPARAM wParam, LPARAM lParam);
 

@@ -137,7 +137,7 @@ namespace view{
 
 	void WinWindow::destroyWindow()
 	{
-		this->onDestroyWnd(mHwnd);
+		this->onDestroyWnd();
 
 		DestroyWindow(mHwnd);
 		HINSTANCE hInstance = GetModuleHandle(NULL);

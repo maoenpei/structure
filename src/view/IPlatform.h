@@ -19,10 +19,10 @@ namespace view{
 		//virtual ISceneManager *getSceneManager() = 0;
 	};
 
+};
+
 // find interface by name using IRegistry
 #define IPLATFORM_NAME		"::IPlatformInstance"
-
-};
 
 #endif
 

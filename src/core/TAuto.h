@@ -3,7 +3,7 @@
 
 namespace core{
 
-	template<class I>
+	template<typename I>
 	class TAuto
 	{
 		I *ptr;
@@ -23,7 +23,7 @@ namespace core{
 		inline I *operator ->() const{return ptr;}
 		inline bool operator ==(I *_ptr) const{return ptr == _ptr;}
 		inline bool operator !=(I *_ptr) const{return ptr != _ptr;}
-		template<class II>
+		template<typename II>
 		inline II *cast() const{return dynamic_cast<II *>(ptr);}
 	};
 	

@@ -5,6 +5,7 @@
 #include "WinGLWindow.h"
 #endif
 #include "CLoopManager.h"
+#include "core/IAllocator.h"
 
 static int GetMilliCounter()
 {
@@ -16,6 +17,13 @@ static int GetMilliCounter()
 
 namespace view{
 
+	class DllAllocator : public core::CStaticObject, public virtual core::IAllocator
+	{
+	public:
+		virtual void *alloc(size_t siz){return ::operator new (siz);}
+		virtual void free(void *ptr){::operator delete (ptr);}
+	};
+
 	WinPlatform::WinPlatform()
 	{}
 
@@ -23,6 +31,9 @@ namespace view{
 	{
 		core::IRegistry *reg = getRegistry();
 		reg->regist(this, IPLATFORM_NAME);
+
+		DllAllocator allocator;
+		reg->regist(&allocator, IALLOCATOR_NAME);
 		
 #ifdef WINGL
 		WinWindow * window = new WinGLWindow(w, h);
@@ -46,6 +57,7 @@ namespace view{
 			}else if (!hasMessage){
 				milli = GetMilliCounter();
 				looper->doLoop(milli);
+				window->onSwapBuffer();
 				milli2 = GetMilliCounter();
 				if (milli2 - milli < MilliInterval){
 					::Sleep(MilliInterval - (milli2 - milli));

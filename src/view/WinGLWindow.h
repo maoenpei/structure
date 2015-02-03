@@ -9,11 +9,14 @@ namespace view{
 	{
 	public:
 		virtual void onCreateWnd(HWND hWnd);
-		virtual void onDestroyWnd(HWND hWnd);
+		virtual void onDestroyWnd();
+		virtual void onSwapBuffer();
 
 		WinGLWindow(int w, int h);
 
 	private:
+		HWND mHwnd;
+		HDC mHDC;
 		HGLRC mHRC;
 	};
 };

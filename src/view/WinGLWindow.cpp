@@ -41,17 +41,22 @@ namespace view{
 
 	void WinGLWindow::onCreateWnd(HWND hWnd)
 	{
-		HDC hDC = GetDC(hWnd);
-		SetupPixelFormat(hDC);
-		mHRC = wglCreateContext(hDC);
-		wglMakeCurrent(hDC, mHRC);
+		mHwnd = hWnd;
+		mHDC = GetDC(mHwnd);
+		SetupPixelFormat(mHDC);
+		mHRC = wglCreateContext(mHDC);
+		wglMakeCurrent(mHDC, mHRC);
 	}
 
-	void WinGLWindow::onDestroyWnd(HWND hWnd)
+	void WinGLWindow::onDestroyWnd()
 	{
-		HDC hDC = GetDC(hWnd);
-		wglMakeCurrent(hDC, NULL);
+		wglMakeCurrent(mHDC, NULL);
 		wglDeleteContext(mHRC);
+	}
+
+	void WinGLWindow::onSwapBuffer()
+	{
+		SwapBuffers(mHDC);
 	}
 	
 };
