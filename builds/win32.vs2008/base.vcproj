@@ -49,6 +49,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -169,6 +170,22 @@
 		<Filter
 			Name="files"
 			>
+			<File
+				RelativePath="..\..\src\model\CFileInput.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileInput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileOutput.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileOutput.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\src\model\CImage.cpp"
 				>
