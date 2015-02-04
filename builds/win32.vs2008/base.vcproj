@@ -170,6 +170,22 @@
 			Name="files"
 			>
 			<File
+				RelativePath="..\..\src\model\CImage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CImage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CImageLoader.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CImageLoader.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\view\CLoopManager.cpp"
 				>
 			</File>
@@ -218,6 +234,30 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\IFileInput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\IFileOutput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\IImage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\IImageCreater.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\IImageDecoder.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\IImageLoader.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\view\ILoopManager.h"
 				>
 			</File>
@@ -255,6 +295,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\core\TAuto.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\TGeometry.h"
 				>
 			</File>
 			<File

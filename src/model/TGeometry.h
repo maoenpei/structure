@@ -1,7 +1,7 @@
 #ifndef __BASE_GEOMETRY_H__
 #define __BASE_GEOMETRY_H__
 
-namespace engine{
+namespace model{
 
 	template<typename T>
 	struct Point2d
