@@ -1,3 +1,9 @@
+*Debug*
+*Release*
 *.user
 *.ncb
 *.suo
+*.exe
+*.res
+*.lib
+*.dll

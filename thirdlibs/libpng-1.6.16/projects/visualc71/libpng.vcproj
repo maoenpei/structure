@@ -17,7 +17,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;NDEBUG;PNG_BUILD_DLL;ZLIB_DLL;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -30,6 +30,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/libpng16.dll"
 				LinkIncremental="1"/>
 			<Tool
@@ -45,7 +46,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
 				Culture="1033"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib;$(IntDir)"/>
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8;$(IntDir)"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -65,7 +66,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..;&quot;..\..\..\zlib-1.2.8&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;DEBUG;PNG_DEBUG=1;PNG_BUILD_DLL;ZLIB_DLL;_CRT_SECURE_NO_WARNINGS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -78,6 +79,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/libpng16d.dll"
 				GenerateDebugInformation="TRUE"/>
 			<Tool
@@ -93,7 +95,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG,PNG_DEBUG=1"
 				Culture="1033"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib;$(IntDir)"/>
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8;$(IntDir)"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -113,7 +115,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;NDEBUG;PNG_BUILD_DLL;ZLIB_DLL;PNGAPI=__stdcall;PNG_NO_MODULEDEF;PNG_LIBPNG_SPECIALBUILD;PNG_USER_PRIVATEBUILD;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -126,6 +128,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/libpng16vb.dll"
 				LinkIncremental="1"/>
 			<Tool
@@ -142,7 +145,7 @@
 				AdditionalOptions="/d PNG_NO_PEDANTIC_WARNINGS /d PNG_LIBPNG_DLLFNAME_POSTFIX=&quot;&quot;&quot;&quot;VB&quot;&quot;&quot;&quot; /d PNG_LIBPNG_SPECIALBUILD=&quot;&quot;&quot;&quot;__stdcall calling convention used for exported functions&quot;&quot;&quot;&quot;"
 				PreprocessorDefinitions="NDEBUG"
 				Culture="1033"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib;$(IntDir)"/>
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8;$(IntDir)"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -162,7 +165,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
@@ -204,7 +207,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;_DEBUG;DEBUG;PNG_DEBUG=1;_CRT_SECURE_NO_WARNINGS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -390,7 +393,8 @@
 				<Tool
 					Name="VCCustomBuildTool"
 					Description="Create dummy include files to prevent &quot;Cannot find missing dependency...&quot; warnings."
-					CommandLine="nmake -f PRJ0041.mak IntDir=$(IntDir)"
+					CommandLine="nmake -f PRJ0041.mak IntDir=$(IntDir)
+"
 					Outputs="$(IntDir)\alloc.h;$(IntDir)\fp.h;$(IntDir)\m68881.h;$(IntDir)\mem.h;$(IntDir)\pngusr.h;$(IntDir)\strings.h;$(IntDir)\unistd.h;$(IntDir)\unixio.h"/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -398,7 +402,8 @@
 				<Tool
 					Name="VCCustomBuildTool"
 					Description="Create dummy include files to prevent &quot;Cannot find missing dependency...&quot; warnings."
-					CommandLine="nmake -f PRJ0041.mak IntDir=$(IntDir)"
+					CommandLine="nmake -f PRJ0041.mak IntDir=$(IntDir)
+"
 					Outputs="$(IntDir)\alloc.h;$(IntDir)\fp.h;$(IntDir)\m68881.h;$(IntDir)\mem.h;$(IntDir)\pngusr.h;$(IntDir)\strings.h;$(IntDir)\unistd.h;$(IntDir)\unixio.h"/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -406,7 +411,8 @@
 				<Tool
 					Name="VCCustomBuildTool"
 					Description="Create dummy include files to prevent &quot;Cannot find missing dependency...&quot; warnings."
-					CommandLine="nmake -f PRJ0041.mak IntDir=$(IntDir)"
+					CommandLine="nmake -f PRJ0041.mak IntDir=$(IntDir)
+"
 					Outputs="$(IntDir)\alloc.h;$(IntDir)\fp.h;$(IntDir)\m68881.h;$(IntDir)\mem.h;$(IntDir)\pngusr.h;$(IntDir)\strings.h;$(IntDir)\unistd.h;$(IntDir)\unixio.h"/>
 			</FileConfiguration>
 		</File>

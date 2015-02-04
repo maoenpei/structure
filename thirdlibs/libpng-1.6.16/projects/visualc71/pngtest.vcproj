@@ -17,7 +17,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;NDEBUG;PNG_DLL;PNG_NO_STDIO;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -28,10 +28,12 @@
 				Name="VCCustomBuildTool"
 				Description="Testing..."
 				CommandLine="set path=$(OutDir)\..;$(OutDir)\..\ZLib
-$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
+$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png
+"
 				Outputs="$(IntDir)\pngout.png"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/pngtest.exe"
 				LinkIncremental="1"
 				SubSystem="1"/>
@@ -64,7 +66,7 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;_DEBUG;PNG_DLL;PNG_NO_STDIO;_CRT_SECURE_NO_WARNINGS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -75,10 +77,12 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 				Name="VCCustomBuildTool"
 				Description="Testing..."
 				CommandLine="set path=$(OutDir)\..;$(OutDir)\..\ZLib
-$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
+$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png
+"
 				Outputs="$(IntDir)\pngout.png"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/pngtest.exe"
 				GenerateDebugInformation="TRUE"
 				SubSystem="1"
@@ -112,7 +116,7 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;NDEBUG;PNG_DLL;PNG_NO_STDIO;PNGAPI=__stdcall;PNG_USER_PRIVATEBUILD;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -124,10 +128,12 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 				Name="VCCustomBuildTool"
 				Description="Testing..."
 				CommandLine="set path=$(OutDir)\..;$(OutDir)\..\..\Win32_DLL_Release\ZLib
-$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
+$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png
+"
 				Outputs="$(IntDir)\pngout.png"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/pngtest.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="$(IntDir)\libpng16b.lib"
@@ -162,7 +168,7 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
@@ -173,10 +179,12 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 				Name="VCCustomBuildTool"
 				Description="Testing..."
 				CommandLine="set path=$(OutDir)\..;$(OutDir)\..\ZLib
-$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
+$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png
+"
 				Outputs="$(IntDir)\pngout.png"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/pngtest.exe"
 				LinkIncremental="1"
 				SubSystem="1"
@@ -210,7 +218,7 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib"
+				AdditionalIncludeDirectories="..\..\scripts;..\..\..\zlib-1.2.8"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -221,10 +229,12 @@ $(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
 				Name="VCCustomBuildTool"
 				Description="Testing..."
 				CommandLine="set path=$(OutDir)\..;$(OutDir)\..\ZLib
-$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png"
+$(TargetPath) ..\..\pngtest.png $(IntDir)\pngout.png
+"
 				Outputs="$(IntDir)\pngout.png"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
 				OutputFile="$(OutDir)/pngtest.exe"
 				GenerateDebugInformation="TRUE"
 				SubSystem="1"
