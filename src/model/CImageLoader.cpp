@@ -3,10 +3,16 @@
 #include "CImageLoader.h"
 #include "IImageDecoder.h"
 #include "CImage.h"
-#include "core/TConstructer.h"
+#include "core/TConstructor.h"
 #include "core/IRegistry.h"
+#include "PNGImageCreater.h"
 
 namespace model{
+
+CImageLoader::CImageLoader()
+{
+	addImageCreater(new PNGImageCreater());
+}
 
 void CImageLoader::loadImage(core::TAuto<IImage> & img, IFileInput * file)
 {

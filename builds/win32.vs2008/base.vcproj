@@ -62,7 +62,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/verbose:lib"
 				AdditionalDependencies="../../thirdlibs/libpng-1.6.16/projects/visualc71/Win32_DLL_Release/libpng16.lib"
 				LinkIncremental="2"
 				IgnoreDefaultLibraryNames=""
@@ -139,7 +138,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/verbose:lib"
 				AdditionalDependencies="../../thirdlibs/libpng-1.6.16/projects/visualc71/Win32_DLL_Release/libpng16.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(OutDir)"
@@ -185,6 +183,30 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\CFileInput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileInputFile.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileInputFile.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileInputMem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileInputMem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileLoader.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\CFileLoader.h"
 				>
 			</File>
 			<File
@@ -264,7 +286,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\IFileLoader.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\IFileOutput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\IGatherNode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\IGraphics.h"
 				>
 			</File>
 			<File
@@ -292,7 +326,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\INodeCamera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\INodeCamera3d.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\view\IPlatform.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\IProjection3dNode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\IProjectionNode.h"
 				>
 			</File>
 			<File
@@ -308,7 +358,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\ISceneManager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\ISceneNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\ISerialize.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\ITexture.h"
 				>
 			</File>
 			<File
@@ -320,7 +382,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\PNGImageCreater.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\PNGImageCreater.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\TAuto.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\TConstructor.h"
 				>
 			</File>
 			<File

@@ -36,7 +36,7 @@ unsigned int CFileInput::available()
 	return 0;
 }
 
-unsigned int CFileInput::seek(int off)
+unsigned int CFileInput::seek(unsigned int off)
 {
 	if (FilePtr){
 		size_t cur = ftell(FilePtr);

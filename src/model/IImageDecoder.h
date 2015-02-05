@@ -9,7 +9,7 @@ namespace model{
 	class IImageDecoder : public virtual core::IRef
 	{
 	public:
-		virtual Sizei getImageSize() = 0;
+		virtual const Sizei &getImageSize() = 0;
 		virtual int getBytesPerPixel() = 0;
 
 		virtual void readLines(unsigned char *pxs) = 0;

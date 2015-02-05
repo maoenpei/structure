@@ -12,7 +12,7 @@ namespace model{
 	public:
 		virtual unsigned int read(unsigned char *rBuf, unsigned int siz);
 		virtual unsigned int available();
-		virtual unsigned int seek(int off);
+		virtual unsigned int seek(unsigned int off);
 
 		bool isValid();
 		

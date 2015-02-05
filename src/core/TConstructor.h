@@ -1,5 +1,5 @@
-#ifndef __BASE_CONSTRUCTER_H__
-#define __BASE_CONSTRUCTER_H__
+#ifndef __BASE_CONSTRUCTOR_H__
+#define __BASE_CONSTRUCTOR_H__
 
 #define __construct_global(__NAME__, __CODE__)		\
 	static class __NAME__##_c_class{\

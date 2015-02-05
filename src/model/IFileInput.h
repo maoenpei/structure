@@ -10,12 +10,12 @@ namespace model{
 	public:
 		virtual unsigned int read(unsigned char *rBuf, unsigned int siz) = 0;
 		virtual unsigned int available() = 0;
-		virtual unsigned int seek(int off) = 0;
+		virtual unsigned int seek(unsigned int off) = 0;
 	};
 	
 };
 
-#define SEEK_INVALID			(-1)
+#define SEEK_INVALID			((unsigned int)-1)
 
 #endif
 

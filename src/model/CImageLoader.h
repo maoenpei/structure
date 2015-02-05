@@ -16,6 +16,8 @@ namespace model{
 
 		virtual void addImageCreater(IImageCreater *creater);
 
+		CImageLoader();
+
 	private:
 		typedef std::vector<core::TAuto<IImageCreater> > CreaterArray;
 		CreaterArray Creaters;
