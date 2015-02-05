@@ -30,7 +30,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../zlib-1.2.8/zlib.lib"
+				AdditionalDependencies="../../../zlib-1.2.8/zdll.lib"
 				OutputFile="$(OutDir)/libpng16.dll"
 				LinkIncremental="1"/>
 			<Tool
