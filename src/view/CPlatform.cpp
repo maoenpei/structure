@@ -29,6 +29,16 @@ void CPlatform::terminate()
 	isTerminate = true;
 }
 
+engine::IGraphics *CPlatform::getGraphics()
+{
+	return Graphics;
+}
+
+engine::ISceneManager *CPlatform::getSceneManager()
+{
+	return SceneManager;
+}
+
 };
 
 

@@ -8,7 +8,7 @@ namespace engine{
 	class ITexture : public virtual core::IRef
 	{
 	public:
-		virtual model::Sizei getSize() = 0;
+		virtual const model::Sizei &getSize() = 0;
 	};
 	
 };

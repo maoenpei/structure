@@ -1,12 +1,12 @@
 #ifndef __BASE_I_PROJECTION_NODE_H__
 #define __BASE_I_PROJECTION_NODE_H__
 
-#include "ISceneNode.h"
+#include "ITransformNode.h"
 #include "model/TGeometry.h"
 
 namespace engine{
 
-	class IProjectionNode : public virtual ISceneNode
+	class IProjectionNode : public virtual ITransformNode
 	{
 	public:
 		virtual void setVolume(const model::Volumef &vol) = 0;

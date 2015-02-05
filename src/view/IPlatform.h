@@ -4,6 +4,8 @@
 #include "core/IRef.h"
 #include "IWindow.h"
 #include "ILoopManager.h"
+#include "engine/IGraphics.h"
+#include "engine/ISceneManager.h"
 
 namespace view{
 	
@@ -15,8 +17,9 @@ namespace view{
 		virtual ILoopManager *getLoopManager() = 0;
 		virtual void setTimeInterval(float dt) = 0;
 		virtual void terminate() = 0;
-		
-		//virtual ISceneManager *getSceneManager() = 0;
+
+		virtual engine::IGraphics *getGraphics() = 0;
+		virtual engine::ISceneManager *getSceneManager() = 0;
 	};
 
 };

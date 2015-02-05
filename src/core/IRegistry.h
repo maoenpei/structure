@@ -13,10 +13,10 @@ namespace core{
 		virtual void releaseAll() = 0;
 	};
 
-#define REGISTRY_FUNC_NAME		"staticGetRegistry"
-typedef IRegistry * (*getRegistry_func)(void);
-
 };
+
+#define REGISTRY_FUNC_NAME		"staticGetRegistry"
+typedef core::IRegistry * (*getRegistry_func)(void);
 
 extern "C" core::IRegistry *getRegistry();
 

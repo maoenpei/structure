@@ -266,6 +266,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CSceneNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CSceneNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\CStaticObject.cpp"
 				>
 			</File>
