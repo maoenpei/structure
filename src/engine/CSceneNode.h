@@ -4,6 +4,8 @@
 #include "ISceneNode.h"
 #include "core/CRefObject.h"
 #include "ISceneManager.h"
+#include "IGraphics.h"
+#include "IGraphicsCacher.h"
 #include "core/TAuto.h"
 
 namespace engine{
@@ -16,7 +18,9 @@ namespace engine{
 		CSceneNode();
 
 	protected:
-		core::TAuto<ISceneManager> SceneManager;
+		core::TAuto<ISceneManager> Manager;
+		core::TAuto<IGraphics> G;
+		core::TAuto<IGraphicsCacher> Cacher;
 		core::TAuto<INodeCamera> Camera;
 	};
 	

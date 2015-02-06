@@ -8,7 +8,10 @@ namespace engine{
 
 CSceneNode::CSceneNode()
 {
-	SceneManager = dynamic_cast<ISceneManager *>(getRegistry()->find(REGISTRY_FUNC_NAME));
+	view::IPlatform *platform = dynamic_cast<view::IPlatform *>(getRegistry()->find(IPLATFORM_NAME));
+	Manager = platform->getSceneManager();
+	G = platform->getGraphics();
+	Cacher = platform->getCacher();
 }
 
 INodeCamera *CSceneNode::getCamera()

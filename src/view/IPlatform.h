@@ -6,6 +6,7 @@
 #include "ILoopManager.h"
 #include "engine/IGraphics.h"
 #include "engine/ISceneManager.h"
+#include "engine/IGraphicsCacher.h"
 
 namespace view{
 	
@@ -19,6 +20,7 @@ namespace view{
 		virtual void terminate() = 0;
 
 		virtual engine::IGraphics *getGraphics() = 0;
+		virtual engine::IGraphicsCacher *getCacher() = 0;
 		virtual engine::ISceneManager *getSceneManager() = 0;
 	};
 
