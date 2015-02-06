@@ -7,9 +7,12 @@
 namespace engine{
 
 	class ITexture;
+	class ITransformer;
 	class IGraphics : public virtual core::IRef
 	{
 	public:
+		virtual ITransformer *getTransformer() = 0;
+		
 		virtual ITexture *loadTexture(model::IImage *image) = 0;
 		
 		virtual void pipeline() = 0;
