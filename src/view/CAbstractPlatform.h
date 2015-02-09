@@ -7,7 +7,7 @@
 
 namespace view{
 
-	class CPlatform : public core::CStaticObject, public virtual IPlatform
+	class CAbstractPlatform : public core::CStaticObject, public virtual IPlatform
 	{
 	public:
 		virtual IWindow *getWindow();
@@ -19,7 +19,7 @@ namespace view{
 		virtual engine::IGraphics *getGraphics();
 		virtual engine::ISceneManager *getSceneManager();
 
-		CPlatform();
+		CAbstractPlatform();
 
 	protected:
 		core::TAuto<engine::ISceneManager> SceneManager;

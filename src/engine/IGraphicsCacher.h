@@ -5,12 +5,17 @@
 #include "ITexture.h"
 
 namespace engine{
-
+	
 	class IGraphicsCacher : public virtual core::IRef
 	{
 	public:
 		virtual ITexture *cacheTexture(const char *path, const char *name) = 0;
+		virtual ITexture *findTexture(const char *name) = 0;
 		virtual void removeTexture(const char *name) = 0;
+
+		virtual IShaderProgram *cacheProgram(const char *vertex, const char *frag, const char *name) = 0;
+		virtual IShaderProgram *findProgram(const char *name) = 0;
+		virtual void removeProgram(const char *name) = 0;
 	};
 	
 };

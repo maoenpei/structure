@@ -22,8 +22,10 @@ namespace engine{
 		virtual void pop();
 		virtual void contact(const TAffinef &aff);
 		virtual void load(const TAffinef &aff);
+		virtual void get(TAffinef &aff);
 		virtual void contact(const TMatrixf &mat);
 		virtual void load(const TMatrixf &mat);
+		virtual void get(TMatrixf &mat);
 	};
 	
 };

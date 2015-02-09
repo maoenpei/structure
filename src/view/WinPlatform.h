@@ -2,11 +2,11 @@
 #define __WIN_PLATFORM_H__
 
 #include "core/IRegistry.h"
-#include "CPlatform.h"
+#include "CAbstractPlatform.h"
 
 namespace view{
 
-	class WinPlatform : public CPlatform
+	class WinPlatform : public CAbstractPlatform
 	{
 	public:
 		WinPlatform();
