@@ -34,6 +34,11 @@ engine::IGraphics *CAbstractPlatform::getGraphics()
 	return Graphics;
 }
 
+engine::IGraphicsCacher *CAbstractPlatform::getCacher()
+{
+	return Cacher;
+}
+
 engine::ISceneManager *CAbstractPlatform::getSceneManager()
 {
 	return SceneManager;

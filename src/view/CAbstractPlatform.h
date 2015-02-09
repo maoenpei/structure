@@ -17,6 +17,7 @@ namespace view{
 		virtual void terminate();
 
 		virtual engine::IGraphics *getGraphics();
+		virtual engine::IGraphicsCacher *getCacher();
 		virtual engine::ISceneManager *getSceneManager();
 
 		CAbstractPlatform();
@@ -24,6 +25,7 @@ namespace view{
 	protected:
 		core::TAuto<engine::ISceneManager> SceneManager;
 		core::TAuto<engine::IGraphics> Graphics;
+		core::TAuto<engine::IGraphicsCacher> Cacher;
 		core::TAuto<IWindow> Window;
 		core::TAuto<ILoopManager> Looper;
 		int MilliInterval;

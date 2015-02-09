@@ -3,6 +3,7 @@
 #include "CSceneNode.h"
 #include "core/IRegistry.h"
 #include "INodeCamera.h"
+#include "view/IPlatform.h"
 
 namespace engine{
 

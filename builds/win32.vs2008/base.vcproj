@@ -178,6 +178,14 @@
 			Name="files"
 			>
 			<File
+				RelativePath="..\..\src\view\CAbstractPlatform.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\view\CAbstractPlatform.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\CFileInput.cpp"
 				>
 			</File>
@@ -239,14 +247,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\view\CLoopManager.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\view\CPlatform.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\view\CPlatform.h"
 				>
 			</File>
 			<File
