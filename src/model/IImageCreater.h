@@ -12,9 +12,9 @@ namespace model{
 	class IImageCreater : public virtual core::IRef
 	{
 	public:
-		virtual void encoderFromFile(core::TAuto<IImageDecoder> &decoder, IFileInput *file) = 0;
+		virtual void decoderFromFile(core::TAuto<IImageDecoder> &decoder, IFileInput *file) = 0;
 
-		//virtual void fileFromDecoder(core::TAuto<IImageEncoder> &encoder, IFileOutput *file) = 0;
+		//virtual void encoderFromFile(core::TAuto<IImageEncoder> &encoder, IFileOutput *file) = 0;
 	};
 	
 };

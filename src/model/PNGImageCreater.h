@@ -9,7 +9,7 @@ namespace model{
 	class PNGImageCreater : public core::CRefObject, public virtual IImageCreater
 	{
 	public:
-		virtual void encoderFromFile(core::TAuto<IImageDecoder> &decoder, IFileInput *file);
+		virtual void decoderFromFile(core::TAuto<IImageDecoder> &decoder, IFileInput *file);
 		
 	};
 	

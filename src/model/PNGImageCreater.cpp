@@ -79,7 +79,7 @@ public:
 	}
 };
 
-void PNGImageCreater::encoderFromFile(core::TAuto<IImageDecoder> &decoder, IFileInput *file)
+void PNGImageCreater::decoderFromFile(core::TAuto<IImageDecoder> &decoder, IFileInput *file)
 {
 	decoder = 0;
 	

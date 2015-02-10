@@ -18,14 +18,14 @@ namespace engine{
 	public:
 		virtual void setMode(unsigned int mode) = 0;
 
-		virtual void push();
-		virtual void pop();
-		virtual void contact(const TAffinef &aff);
-		virtual void load(const TAffinef &aff);
-		virtual void get(TAffinef &aff);
-		virtual void contact(const TMatrixf &mat);
-		virtual void load(const TMatrixf &mat);
-		virtual void get(TMatrixf &mat);
+		virtual void push() = 0;
+		virtual void pop() = 0;
+		virtual void contact(const TAffinef &aff) = 0;
+		virtual void load(const TAffinef &aff) = 0;
+		virtual void get(TAffinef &aff) = 0;
+		virtual void contact(const TMatrixf &mat) = 0;
+		virtual void load(const TMatrixf &mat) = 0;
+		virtual void get(TMatrixf &mat) = 0;
 	};
 	
 };

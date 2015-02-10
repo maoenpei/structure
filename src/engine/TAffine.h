@@ -1,21 +1,40 @@
 #ifndef __BASE_AFFINE_H__
 #define __BASE_AFFINE_H__
 
+#include <string>
+
 namespace engine{
 
 	template<typename T>
 	struct TAffine
 	{
-		T a, b, c, d, x, y;
-		inline TAffine() : a(1), b(0), c(0), d(1), x(0), y(0){}
-		inline TAffine(T _a, T _b, T _c, T _d, T _x, T _y) : a(_a), b(_b), c(_c), d(_d), x(_x), y(_y){}
-		inline void contact(TAffine &aff, const TAffine &other){
-			aff.a = a*other.a+c*other.b;
-			aff.b = b*other.a+d*other.b;
-			aff.c = a*other.c+c*other.d;
-			aff.d = b*other.c+d*other.d;
-			aff.x = a*other.x+c*other.y+x;
-			aff.y = b*other.x+d*other.y+y;
+		T v[6];
+		inline TAffine(){
+			memset(v, 0, sizeof(v));
+			v[0] = 1;
+			v[3] = 1;
+		}
+		inline TAffine(T _a, T _b, T _c, T _d, T _x, T _y){
+			v[0] = _a;
+			v[1] = _b;
+			v[2] = _c;
+			v[3] = _d;
+			v[4] = _x;
+			v[5] = _y;
+		}
+		inline TAffine(const TAffine &copy){
+			memcpy(v, copy.v, sizeof(v));
+		}
+		inline void operator =(const TAffine &copy){
+			memcpy(v, copy.v, sizeof(v));
+		}
+		inline void contact(TAffine &aff, const TAffine &other) const{
+			aff.v[0] = v[0]*other.v[0]+v[2]*other.v[1];
+			aff.v[1] = v[1]*other.v[0]+v[3]*other.v[1];
+			aff.v[2] = v[0]*other.v[2]+v[2]*other.v[3];
+			aff.v[3] = v[1]*other.v[2]+v[3]*other.v[3];
+			aff.v[4] = v[0]*other.v[4]+v[2]*other.v[5]+v[4];
+			aff.v[5] = v[1]*other.v[4]+v[3]*other.v[5]+v[5];
 		}
 	};
 

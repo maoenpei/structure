@@ -282,6 +282,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CTransformer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CTransformer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\GLGraphics.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\GLGraphics.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\IAllocator.h"
 				>
 			</File>

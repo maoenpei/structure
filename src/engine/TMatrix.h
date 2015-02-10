@@ -13,7 +13,13 @@ namespace engine{
 			memset(v, 0, sizeof(v));
 			v[0] = v[5] = v[10] = v[15] = 1;
 		}
-		inline void contact(TMatrix &mat, const TMatrix &other){
+		inline TMatrix(const TMatrix &copy){
+			memcpy(v, copy.v, sizeof(v));
+		}
+		inline void operator =(const TMatrix &copy){
+			memcpy(v, copy.v, sizeof(v));
+		}
+		inline void contact(TMatrix &mat, const TMatrix &other) const{
 			mat.v[0] = v[0]*other.v[0] + v[4]*other.v[1] + v[8]*other.v[2] + v[12]*other.v[3];
 			mat.v[1] = v[1]*other.v[0] + v[5]*other.v[1] + v[9]*other.v[2] + v[13]*other.v[3];
 			mat.v[2] = v[2]*other.v[0] + v[6]*other.v[1] + v[10]*other.v[2] + v[14]*other.v[3];

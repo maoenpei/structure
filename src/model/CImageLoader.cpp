@@ -20,7 +20,7 @@ void CImageLoader::loadImage(core::TAuto<IImage> & img, IFileInput * file)
 	CreaterArray::iterator it;
 	for (it = Creaters.begin(); it != Creaters.end(); it++){
 		file->seek(0);
-		(*it)->encoderFromFile(decoder, file);
+		(*it)->decoderFromFile(decoder, file);
 		if (decoder){
 			Sizei siz = decoder->getImageSize();
 			int channel = decoder->getBytesPerPixel();
