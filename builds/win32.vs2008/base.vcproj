@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../src;../../thirdlibs/libpng-1.6.16"
+				AdditionalIncludeDirectories="../../src;&quot;../../thirdlibs/libpng-1.6.16&quot;;&quot;../../thirdlibs/glew-1.9.0/include/GL&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WINGL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../thirdlibs/libpng-1.6.16/projects/visualc71/Win32_DLL_Release/libpng16.lib"
+				AdditionalDependencies="../../thirdlibs/libpng-1.6.16/projects/visualc71/Win32_DLL_Release/libpng16.lib ../../thirdlibs/glew-1.9.0/lib/glew32.lib"
 				LinkIncremental="2"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
@@ -118,7 +118,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../src;../../thirdlibs/libpng-1.6.16"
+				AdditionalIncludeDirectories="../../src;&quot;../../thirdlibs/libpng-1.6.16&quot;;&quot;../../thirdlibs/glew-1.9.0/include/GL&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;WINGL"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -138,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../thirdlibs/libpng-1.6.16/projects/visualc71/Win32_DLL_Release/libpng16.lib"
+				AdditionalDependencies="../../thirdlibs/libpng-1.6.16/projects/visualc71/Win32_DLL_Release/libpng16.lib ../../thirdlibs/glew-1.9.0/lib/glew32.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(OutDir)"
 				IgnoreDefaultLibraryNames="LIBCMT.lib;"

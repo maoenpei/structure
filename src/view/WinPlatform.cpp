@@ -6,6 +6,7 @@
 #endif
 #include "CLoopManager.h"
 #include "core/IAllocator.h"
+#include "engine/GLGraphics.h"
 
 static int GetMilliCounter()
 {
@@ -37,13 +38,16 @@ namespace view{
 		
 #ifdef WINGL
 		WinWindow * window = new WinGLWindow(w, h);
+		engine::GLGraphics *graphics = new engine::GLGraphics();
 #endif
+		Graphics = graphics;
 		Window = window;
 
 		CLoopManager * looper = new CLoopManager();
 		Looper = looper;
 		
 		window->createWindow();
+		graphics->initAPIs();
 		int milli, milli2;
 		bool quit = false;
 		bool hasMessage;

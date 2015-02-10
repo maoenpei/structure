@@ -18,6 +18,7 @@ namespace engine{
 		
 		virtual void pipeline(IShaderDrawer *drawer, int n);
 
+		void initAPIs();
 		GLGraphics();
 
 	private:

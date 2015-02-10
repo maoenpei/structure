@@ -7,3 +7,7 @@
 *.res
 *.lib
 *.dll
+*.sdf
+*.pdb
+ipch
+*.exp
