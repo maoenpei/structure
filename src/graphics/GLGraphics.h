@@ -16,7 +16,8 @@ namespace engine{
 		
 		virtual void loadTexture(core::TAuto<ITexture> &texture, model::IImage *image);
 		virtual void loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag);
-		
+
+		virtual void cleanBuffer();
 		virtual void pipeline(IShaderDrawer *drawer, int n);
 
 		void initAPIs();

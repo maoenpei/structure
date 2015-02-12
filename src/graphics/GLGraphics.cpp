@@ -85,6 +85,11 @@ void GLGraphics::loadProgram(core::TAuto<IShaderProgram> &program, const char *v
 {
 }
 
+void GLGraphics::cleanBuffer()
+{
+	
+}
+
 void GLGraphics::pipeline(IShaderDrawer * drawer, int n)
 {
 }
