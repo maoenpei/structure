@@ -5,6 +5,7 @@
 #include "core/CRefObject.h"
 #include "core/TAuto.h"
 #include <glew.h>
+#include "GLStateCacher.h"
 
 namespace engine{
 
@@ -13,8 +14,8 @@ namespace engine{
 	public:
 		virtual ITransformer *getTransformer();
 		
-		virtual ITexture *loadTexture(model::IImage *image);
-		virtual IShaderProgram *loadProgram(const char *vertex, const char *frag);
+		virtual void loadTexture(core::TAuto<ITexture> &texture, model::IImage *image);
+		virtual void loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag);
 		
 		virtual void pipeline(IShaderDrawer *drawer, int n);
 
@@ -23,7 +24,7 @@ namespace engine{
 
 	private:
 		core::TAuto<ITransformer> Transformer;
-		
+		core::TAuto<GLStateCacher> StateCacher;
 	};
 	
 };

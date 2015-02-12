@@ -298,6 +298,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\GLStateCacher.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\GLStateCacher.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\IAllocator.h"
 				>
 			</File>

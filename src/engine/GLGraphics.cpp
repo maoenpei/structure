@@ -2,13 +2,66 @@
 
 #include "GLGraphics.h"
 #include "CTransformer.h"
+#include "ITexture.h"
 #include <assert.h>
 
 namespace engine{
 
+class GLTexture : public core::CRefObject, public virtual ITexture
+{
+public:
+	static void getGLTextureFormat(model::IImage *image, GLint &format, GLint &interFormat, GLint &type)
+	{
+		int channel = image->getChannel();
+		assert(channel == 3 || channel == 4);
+		if (channel == 3){
+			interFormat = format = GL_RGB;
+		}else if (channel == 4){
+			interFormat = format = GL_RGBA;
+		}
+		type = GL_UNSIGNED_BYTE;
+	}
+	
+	GLTexture(const core::TAuto<GLStateCacher> &_StateCacher, model::IImage *image)
+		: StateCacher(_StateCacher)
+		, Size(image->getSize())
+	{
+		glGenTextures(1, &TextureId);
+		StateCacher->bindTexture(TextureId);
+		
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		
+		GLint format;
+		GLint interFormat;
+		GLint type;
+		getGLTextureFormat(image, format, interFormat, type);
+		glTexImage2D(GL_TEXTURE_2D, 0, interFormat, (GLsizei)Size.w, (GLsizei)Size.h, 0, format, type, (GLvoid *)image->getData());
+	}
+	~GLTexture()
+	{
+		if (StateCacher->BindTexture == TextureId){
+			StateCacher->bindTexture(0);
+		}
+		glDeleteTextures(1, &TextureId);
+	}
+	virtual const model::Sizei &getSize()
+	{
+		return Size;
+	}
+
+private:
+	GLuint TextureId;
+	model::Sizei Size;
+	core::TAuto<GLStateCacher> StateCacher;
+};
+
 GLGraphics::GLGraphics()
 {
 	Transformer = new CTransformer();
+	StateCacher = new GLStateCacher();
 }
 
 void GLGraphics::initAPIs()
@@ -23,17 +76,16 @@ ITransformer *GLGraphics::getTransformer()
 	return Transformer;
 }
 
-ITexture *GLGraphics::loadTexture(model::IImage *image)
+void GLGraphics::loadTexture(core::TAuto<ITexture> &texture, model::IImage *image)
 {
-	return 0;
+	texture = new GLTexture(StateCacher, image);
 }
 
-IShaderProgram *GLGraphics::loadProgram(const char * vertex,const char * frag)
+void GLGraphics::loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag)
 {
-	return 0;
 }
 
-void GLGraphics::pipeline(IShaderDrawer * drawer,int n)
+void GLGraphics::pipeline(IShaderDrawer * drawer, int n)
 {
 }
 

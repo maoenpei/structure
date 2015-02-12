@@ -4,6 +4,7 @@
 #include "core/IRef.h"
 #include "model/IImage.h"
 #include "ITransformer.h"
+#include "core/TAuto.h"
 
 namespace engine{
 	
@@ -15,8 +16,8 @@ namespace engine{
 	public:
 		virtual ITransformer *getTransformer() = 0;
 		
-		virtual ITexture *loadTexture(model::IImage *image) = 0;
-		virtual IShaderProgram *loadProgram(const char *vertex, const char *frag) = 0;
+		virtual void loadTexture(core::TAuto<ITexture> &texture, model::IImage *image) = 0;
+		virtual void loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag) = 0;
 		
 		virtual void pipeline(IShaderDrawer *drawer, int n) = 0;
 	};
