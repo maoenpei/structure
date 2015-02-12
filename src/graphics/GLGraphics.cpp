@@ -3,6 +3,7 @@
 #include "GLGraphics.h"
 #include "CTransformer.h"
 #include "ITexture.h"
+#include "GLShaderProgram.h"
 #include <assert.h>
 
 namespace graphics{
@@ -22,8 +23,8 @@ public:
 		type = GL_UNSIGNED_BYTE;
 	}
 	
-	GLTexture(const core::TAuto<GLStateCacher> &_StateCacher, model::IImage *image)
-		: StateCacher(_StateCacher)
+	GLTexture(GLStateCacher *_statecacher, model::IImage *image)
+		: StateCacher(_statecacher)
 		, Size(image->getSize())
 	{
 		glGenTextures(1, &TextureId);
@@ -40,7 +41,7 @@ public:
 		getGLTextureFormat(image, format, interFormat, type);
 		glTexImage2D(GL_TEXTURE_2D, 0, interFormat, (GLsizei)Size.w, (GLsizei)Size.h, 0, format, type, (GLvoid *)image->getData());
 	}
-	~GLTexture()
+	virtual ~GLTexture()
 	{
 		if (StateCacher->BindTexture == TextureId){
 			StateCacher->bindTexture(0);
@@ -83,6 +84,7 @@ void GLGraphics::loadTexture(core::TAuto<ITexture> &texture, model::IImage *imag
 
 void GLGraphics::loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag)
 {
+	program = new GLShaderProgram(StateCacher, vertex, frag);
 }
 
 void GLGraphics::cleanBuffer()

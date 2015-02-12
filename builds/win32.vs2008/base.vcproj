@@ -298,6 +298,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\graphics\GLShaderDrawer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\GLShaderDrawer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\GLShaderProgram.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\GLShaderProgram.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\graphics\GLStateCacher.cpp"
 				>
 			</File>

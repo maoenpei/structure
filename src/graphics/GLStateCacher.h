@@ -13,6 +13,9 @@ namespace graphics{
 		
 		GLuint BindTexture;
 		void bindTexture(GLuint uTex);
+
+		GLuint UsingProgram;
+		void useProgram(GLuint uProg);
 	};
 	
 };
