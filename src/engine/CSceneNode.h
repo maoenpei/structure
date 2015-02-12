@@ -4,8 +4,8 @@
 #include "ISceneNode.h"
 #include "core/CRefObject.h"
 #include "ISceneManager.h"
-#include "IGraphics.h"
-#include "IGraphicsCacher.h"
+#include "graphics/IGraphics.h"
+#include "graphics/IGraphicsCacher.h"
 #include "core/TAuto.h"
 
 namespace engine{
@@ -19,8 +19,8 @@ namespace engine{
 
 	protected:
 		core::TAuto<ISceneManager> Manager;
-		core::TAuto<IGraphics> G;
-		core::TAuto<IGraphicsCacher> Cacher;
+		core::TAuto<graphics::IGraphics> G;
+		core::TAuto<graphics::IGraphicsCacher> Cacher;
 		core::TAuto<INodeCamera> Camera;
 	};
 	

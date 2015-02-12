@@ -282,27 +282,27 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\CTransformer.cpp"
+				RelativePath="..\..\src\graphics\CTransformer.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\CTransformer.h"
+				RelativePath="..\..\src\graphics\CTransformer.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\GLGraphics.cpp"
+				RelativePath="..\..\src\graphics\GLGraphics.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\GLGraphics.h"
+				RelativePath="..\..\src\graphics\GLGraphics.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\GLStateCacher.cpp"
+				RelativePath="..\..\src\graphics\GLStateCacher.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\GLStateCacher.h"
+				RelativePath="..\..\src\graphics\GLStateCacher.h"
 				>
 			</File>
 			<File
@@ -330,7 +330,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\IGraphics.h"
+				RelativePath="..\..\src\graphics\IGraphics.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\IGraphicsCacher.h"
 				>
 			</File>
 			<File
@@ -402,7 +406,23 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\ITexture.h"
+				RelativePath="..\..\src\graphics\IShaderDrawer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\IShaderProgram.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\ITexture.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\ITransformer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\ITransformNode.h"
 				>
 			</File>
 			<File
@@ -422,6 +442,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\graphics\TAffine.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\TAuto.h"
 				>
 			</File>
@@ -431,6 +455,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\TGeometry.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\TMatrix.h"
 				>
 			</File>
 			<File

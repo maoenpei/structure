@@ -29,12 +29,12 @@ void CAbstractPlatform::terminate()
 	isTerminate = true;
 }
 
-engine::IGraphics *CAbstractPlatform::getGraphics()
+graphics::IGraphics *CAbstractPlatform::getGraphics()
 {
 	return Graphics;
 }
 
-engine::IGraphicsCacher *CAbstractPlatform::getCacher()
+graphics::IGraphicsCacher *CAbstractPlatform::getCacher()
 {
 	return Cacher;
 }

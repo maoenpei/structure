@@ -4,7 +4,7 @@
 #include "core/IRef.h"
 #include "ITexture.h"
 
-namespace engine{
+namespace graphics{
 	
 	class IGraphicsCacher : public virtual core::IRef
 	{

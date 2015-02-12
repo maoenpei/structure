@@ -6,7 +6,7 @@
 #include "core/TAuto.h"
 #include <vector>
 
-namespace engine{
+namespace graphics{
 
 	class CTransformer : public core::CRefObject, public virtual ITransformer
 	{

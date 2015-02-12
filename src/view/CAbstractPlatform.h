@@ -16,16 +16,16 @@ namespace view{
 		virtual void setTimeInterval(float dt);
 		virtual void terminate();
 
-		virtual engine::IGraphics *getGraphics();
-		virtual engine::IGraphicsCacher *getCacher();
+		virtual graphics::IGraphics *getGraphics();
+		virtual graphics::IGraphicsCacher *getCacher();
 		virtual engine::ISceneManager *getSceneManager();
 
 		CAbstractPlatform();
 
 	protected:
 		core::TAuto<engine::ISceneManager> SceneManager;
-		core::TAuto<engine::IGraphics> Graphics;
-		core::TAuto<engine::IGraphicsCacher> Cacher;
+		core::TAuto<graphics::IGraphics> Graphics;
+		core::TAuto<graphics::IGraphicsCacher> Cacher;
 		core::TAuto<IWindow> Window;
 		core::TAuto<ILoopManager> Looper;
 		int MilliInterval;

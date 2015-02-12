@@ -4,7 +4,7 @@
 #include "core/CRefObject.h"
 #include <glew.h>
 
-namespace engine{
+namespace graphics{
 
 	class GLStateCacher : public core::CRefObject
 	{

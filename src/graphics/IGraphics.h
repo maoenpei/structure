@@ -6,7 +6,7 @@
 #include "ITransformer.h"
 #include "core/TAuto.h"
 
-namespace engine{
+namespace graphics{
 	
 	class ITexture;
 	class IShaderProgram;

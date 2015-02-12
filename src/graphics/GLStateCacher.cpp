@@ -2,7 +2,7 @@
 
 #include "GLStateCacher.h"
 
-namespace engine{
+namespace graphics{
 
 GLStateCacher::GLStateCacher()
 	: BindTexture(0)

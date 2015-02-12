@@ -7,7 +7,7 @@
 #include <glew.h>
 #include "GLStateCacher.h"
 
-namespace engine{
+namespace graphics{
 
 	class GLGraphics : public core::CRefObject, public virtual IGraphics
 	{

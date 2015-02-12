@@ -3,7 +3,7 @@
 #include "CTransformer.h"
 #include <assert.h>
 
-namespace engine{
+namespace graphics{
 
 struct CTransformer::TransformerEntry : public core::CRefObject
 {

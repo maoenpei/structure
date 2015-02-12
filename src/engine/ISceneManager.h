@@ -2,7 +2,6 @@
 #define __BASE_I_SCENE_MANAGER_H__
 
 #include "core/IRef.h"
-#include "ITexture.h"
 #include "core/TAuto.h"
 
 namespace engine{

@@ -3,7 +3,7 @@
 
 #include "model/TGeometry.h"
 
-namespace engine{
+namespace graphics{
 
 	class ITexture : public virtual core::IRef
 	{

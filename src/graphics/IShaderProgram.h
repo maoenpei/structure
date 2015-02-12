@@ -3,7 +3,7 @@
 
 #include "core/IRef.h"
 
-namespace engine{
+namespace graphics{
 
 	class IShaderDrawer;
 	class IShaderProgram : public virtual core::IRef

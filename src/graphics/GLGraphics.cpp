@@ -5,7 +5,7 @@
 #include "ITexture.h"
 #include <assert.h>
 
-namespace engine{
+namespace graphics{
 
 class GLTexture : public core::CRefObject, public virtual ITexture
 {

@@ -4,9 +4,9 @@
 #include "core/IRef.h"
 #include "IWindow.h"
 #include "ILoopManager.h"
-#include "engine/IGraphics.h"
+#include "graphics/IGraphics.h"
+#include "graphics/IGraphicsCacher.h"
 #include "engine/ISceneManager.h"
-#include "engine/IGraphicsCacher.h"
 
 namespace view{
 	
@@ -19,8 +19,8 @@ namespace view{
 		virtual void setTimeInterval(float dt) = 0;
 		virtual void terminate() = 0;
 
-		virtual engine::IGraphics *getGraphics() = 0;
-		virtual engine::IGraphicsCacher *getCacher() = 0;
+		virtual graphics::IGraphics *getGraphics() = 0;
+		virtual graphics::IGraphicsCacher *getCacher() = 0;
 		virtual engine::ISceneManager *getSceneManager() = 0;
 	};
 

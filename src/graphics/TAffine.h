@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace engine{
+namespace graphics{
 
 	template<typename T>
 	struct TAffine

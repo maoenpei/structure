@@ -5,7 +5,7 @@
 #include "IShaderProgram.h"
 #include "ITexture.h"
 
-namespace engine{
+namespace graphics{
 
 	class IShaderDrawer : public virtual core::IRef
 	{
