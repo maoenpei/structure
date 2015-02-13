@@ -1,8 +1,18 @@
 
 
 #include "GLShaderProgram.h"
+#include "GLShaderDrawer.h"
+#include <assert.h>
 
 namespace graphics{
+
+static GLuint compileShader(const char * source,GLenum type)
+{
+	GLuint shaderId = glCreateShader(type);
+	glShaderSource(shaderId, 1, &source, 0);
+	glCompileShader(shaderId);
+	return shaderId;
+}
 
 GLShaderProgram::GLShaderProgram(GLStateCacher *_statecacher, const char *vertex, const char *frag)
 	: StateCacher(_statecacher)
@@ -28,16 +38,9 @@ GLShaderProgram::~GLShaderProgram()
 	glDeleteProgram(ProgramId);
 }
 
-GLuint GLShaderProgram::compileShader(const char * source,GLenum type)
-{
-	GLuint shaderId = glCreateShader(type);
-	glShaderSource(shaderId, 1, &source, 0);
-	glCompileShader(shaderId);
-	return shaderId;
-}
-
 unsigned int GLShaderProgram::getTransformIndex()
 {
+	assert(TransformName != "");
 	return getUniformIndex(TransformName.c_str());
 }
 
@@ -77,6 +80,7 @@ unsigned int GLShaderProgram::getAttributeIndex(const char * name)
 
 void GLShaderProgram::createDrawer(core::TAuto<IShaderDrawer> &drawer)
 {
+	drawer = new GLShaderDrawer(StateCacher, this);
 }
 
 };

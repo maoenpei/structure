@@ -322,6 +322,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\graphics\GLTexture.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\GLTexture.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\IAllocator.h"
 				>
 			</File>

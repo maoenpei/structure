@@ -25,7 +25,6 @@ namespace graphics{
 		void use();
 		
 	private:
-		static GLuint compileShader(const char *source, GLenum type);
 		GLuint ProgramId;
 		core::TAuto<GLStateCacher> StateCacher;
 		std::string TransformName;

@@ -10,6 +10,10 @@ GLShaderDrawer::GLShaderDrawer(GLStateCacher *_statecacher, IShaderProgram *prog
 {
 }
 
+GLShaderDrawer::~GLShaderDrawer()
+{
+}
+
 IShaderProgram *GLShaderDrawer::getProgram()
 {
 	return ShaderProgram;
@@ -23,11 +27,19 @@ void GLShaderDrawer::setUniformValue(unsigned int l,void * ptr,unsigned int n,co
 {
 }
 
-void GLShaderDrawer::setAttributeValue(unsigned int l,void * ptr,unsigned int n,unsigned int stride,const char * sig)
+void GLShaderDrawer::setAttributeValue(unsigned int l, unsigned int offset, const char *sig)
 {
 }
 
-void GLShaderDrawer::setIndexs(void * indexs,const char * sig)
+void GLShaderDrawer::setAttributeData(void * ptr,unsigned int n,unsigned int stride)
+{
+}
+
+void GLShaderDrawer::setIndexs(void * indexs, unsigned int n,const char * sig)
+{
+}
+
+void GLShaderDrawer::drawAll(ITransformer *trans)
 {
 }
 

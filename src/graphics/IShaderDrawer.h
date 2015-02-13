@@ -16,9 +16,10 @@ namespace graphics{
 		// sig: 1fv, 1iv, 3fv ...
 		virtual void setUniformValue(unsigned int l, void *ptr, unsigned int n, const char *sig) = 0;
 		// sig: GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE ...
-		virtual void setAttributeValue(unsigned int l, void *ptr, unsigned int n, unsigned int stride, const char *sig) = 0;
+		virtual void setAttributeValue(unsigned int l, unsigned int offset, const char *sig) = 0;
+		virtual void setAttributeData(void *ptr, unsigned int n, unsigned int stride) = 0;
 		// sig: GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE ...
-		virtual void setIndexs(void *indexs, const char *sig) = 0;
+		virtual void setIndexs(void *indexs, unsigned int n, const char *sig) = 0;
 	};
 	
 };
