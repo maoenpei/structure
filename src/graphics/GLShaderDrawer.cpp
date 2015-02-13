@@ -41,11 +41,15 @@ struct GLShaderDrawer::AttributeValue : public core::CRefObject{
 GLShaderDrawer::GLShaderDrawer(GLStateCacher *_statecacher, IShaderProgram *program)
 	: StateCacher(_statecacher)
 	, ShaderProgram(program)
+	, VertexBufferId(0)
+	, IndexsBufferId(0)
 {
 }
 
 GLShaderDrawer::~GLShaderDrawer()
 {
+	StateCacher->deleteBuffer(VertexBufferId);
+	StateCacher->deleteIndexs(IndexsBufferId);
 }
 
 IShaderProgram *GLShaderDrawer::getProgram()
@@ -55,10 +59,12 @@ IShaderProgram *GLShaderDrawer::getProgram()
 
 void GLShaderDrawer::setTexture(int index, ITexture *tex)
 {
+	Textures[index] = tex;
 }
 
 void GLShaderDrawer::setUniformValue(unsigned int l,void * ptr,unsigned int n,const char * sig)
 {
+	Uniforms[l] = new UniformValue(ptr, n, sig);
 }
 
 void GLShaderDrawer::setAttributeValue(unsigned int l, unsigned int offset, const char *sig)

@@ -11,11 +11,20 @@ namespace graphics{
 	public:
 		GLStateCacher();
 		
-		GLuint BindTexture;
 		void bindTexture(GLuint uTex);
-
-		GLuint UsingProgram;
+		void deleteTexture(GLuint uTex);
 		void useProgram(GLuint uProg);
+		void deleteProgram(GLuint uProg);
+		void bindBuffer(GLuint uBuf);
+		void deleteBuffer(GLuint uBuf);
+		void bindIndexs(GLuint uIndexs);
+		void deleteIndexs(GLuint uIndexs);
+
+	private:
+		GLuint BindTexture;
+		GLuint UsingProgram;
+		GLuint BindBuffer;
+		GLuint BindIndexs;
 	};
 	
 };

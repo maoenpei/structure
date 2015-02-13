@@ -32,10 +32,7 @@ GLShaderProgram::GLShaderProgram(GLStateCacher *_statecacher, const char *vertex
 
 GLShaderProgram::~GLShaderProgram()
 {
-	if (StateCacher->UsingProgram == ProgramId){
-		StateCacher->useProgram(0);
-	}
-	glDeleteProgram(ProgramId);
+	StateCacher->deleteProgram(ProgramId);
 }
 
 unsigned int GLShaderProgram::getTransformIndex()

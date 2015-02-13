@@ -38,10 +38,7 @@ GLTexture::GLTexture(GLStateCacher *_statecacher, model::IImage *image)
 
 GLTexture::~GLTexture()
 {
-	if (StateCacher->BindTexture == TextureId){
-		StateCacher->bindTexture(0);
-	}
-	glDeleteTextures(1, &TextureId);
+	StateCacher->deleteTexture(TextureId);
 }
 
 const model::Sizei &GLTexture::getSize()
