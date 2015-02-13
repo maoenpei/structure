@@ -12,17 +12,6 @@
 
 namespace graphics{
 
-	struct UniformValue : public core::CRefObject{
-		void *ptr;
-		unsigned int n;
-		std::string sig;
-	};
-
-	struct AttributeValue : public core::CRefObject{
-		unsigned int offset;
-		std::string sig;
-	};
-	
 	class GLShaderDrawer : public core::CRefObject, public virtual IShaderDrawer
 	{
 	public:
@@ -45,10 +34,15 @@ namespace graphics{
 	private:
 		core::TAuto<GLStateCacher> StateCacher;
 		core::TAuto<IShaderProgram> ShaderProgram;
-		
+
+		struct UniformValue;
+		struct AttributeValue;
 		std::map<unsigned int, core::TAuto<ITexture> > Textures;
 		std::map<unsigned int, core::TAuto<UniformValue> > Uniforms;
 		std::map<unsigned int, core::TAuto<AttributeValue> > Attributes;
+
+		GLuint VertexBufferId;
+		GLuint IndexsBufferId;
 	};
 	
 };
