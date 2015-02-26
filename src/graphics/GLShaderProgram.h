@@ -22,6 +22,7 @@ namespace graphics{
 		virtual ~GLShaderProgram();
 
 		unsigned int getTransformIndex();
+		bool updateUniformValue(unsigned int l, void *ptr, unsigned int siz);
 		void use();
 		
 	private:
@@ -32,6 +33,9 @@ namespace graphics{
 		typedef std::map<std::string, unsigned int> IndexMapType;
 		IndexMapType UniformIndexs;
 		IndexMapType AttributeIndexs;
+
+		struct UniformData;
+		std::map<unsigned int, core::TAuto<UniformData> > Uniforms;
 	};
 	
 };

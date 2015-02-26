@@ -274,6 +274,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\graphics\CShaderDrawer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\CShaderDrawer.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\CStaticObject.cpp"
 				>
 			</File>

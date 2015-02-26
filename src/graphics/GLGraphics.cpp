@@ -42,10 +42,27 @@ void GLGraphics::cleanBuffer()
 	
 }
 
-void GLGraphics::pipeline(IShaderDrawer * drawer, int n)
+void GLGraphics::pipeline(IShaderDrawer * drawer)
 {
 	GLShaderDrawer *glDrawer = dynamic_cast<GLShaderDrawer *>(drawer);
-	glDrawer->drawAll(Transformer);
+	GLShaderProgram *glProgram = dynamic_cast<GLShaderProgram *>(glDrawer->getProgram());
+
+	// update transform matrix
+	unsigned int l = glProgram->getTransformIndex();
+	unsigned int mode;
+	void *ptr = Transformer->getMode(mode);
+	switch(mode){
+	case TransformMode_2D:
+		glDrawer->setUniformValue(l, ptr, 3, SIG_VEC2);
+		break;
+	case TransformMode_3D:
+		glDrawer->setUniformValue(l, ptr, 1, SIG_MAT4);
+		break;
+	}
+
+	// do draw
+	glDrawer->drawAll();
+	
 }
 
 };

@@ -1,48 +1,19 @@
 
 
 #include "GLShaderDrawer.h"
+#include "GLShaderProgram.h"
+#include "GLTexture.h"
+#include <assert.h>
 
 namespace graphics{
 
-enum{
-	sig_int,
-	sig_float,
-	sig_vec2,
-	sig_mat4,
-	sig_max,
-};
-
-static std::map<std::string, int> sigSizes;
-static std::map<std::string, unsigned int> sigTypes;
-
-struct GLShaderDrawer::UniformValue : public core::CRefObject{
-	unsigned char *ptr;
-	unsigned int n;
-	std::string sig;
-
-	UniformValue(void *_ptr, unsigned int _n, const char *_sig)
-		: n(_n), sig(_sig)
-	{
-		int size = n * sigSizes[sig];
-		ptr = new unsigned char [size];
-		memcpy(ptr, _ptr, size);
-	}
-	~UniformValue()
-	{
-		delete [] ptr;
-	}
-};
-
-struct GLShaderDrawer::AttributeValue : public core::CRefObject{
-	unsigned int offset;
-	std::string sig;
-};
-
 GLShaderDrawer::GLShaderDrawer(GLStateCacher *_statecacher, IShaderProgram *program)
-	: StateCacher(_statecacher)
-	, ShaderProgram(program)
+	: CShaderDrawer(program)
+	, StateCacher(_statecacher)
 	, VertexBufferId(0)
 	, IndexsBufferId(0)
+	, Stride(0)
+	, Total(0)
 {
 }
 
@@ -52,35 +23,116 @@ GLShaderDrawer::~GLShaderDrawer()
 	StateCacher->deleteIndexs(IndexsBufferId);
 }
 
-IShaderProgram *GLShaderDrawer::getProgram()
+void GLShaderDrawer::setAttributeData(void * ptr, unsigned int total, unsigned int stride)
 {
-	return ShaderProgram;
+	if (VertexBufferId){
+		StateCacher->deleteBuffer(VertexBufferId);
+	}
+	Stride = stride;
+	Total = total;
+	glGenBuffers(1, &VertexBufferId);
+	StateCacher->bindBuffer(VertexBufferId);
+	glBufferData(GL_ARRAY_BUFFER, Stride * Total, ptr, GL_DYNAMIC_DRAW);
 }
 
-void GLShaderDrawer::setTexture(int index, ITexture *tex)
+void GLShaderDrawer::updateAttributeData(void * ptr, unsigned int start, unsigned int n)
 {
-	Textures[index] = tex;
+	if (VertexBufferId){
+		StateCacher->bindBuffer(VertexBufferId);
+		glBufferSubData(GL_ARRAY_BUFFER, Stride * start, Stride * n , ptr);
+	}
 }
 
-void GLShaderDrawer::setUniformValue(unsigned int l,void * ptr,unsigned int n,const char * sig)
+void GLShaderDrawer::setIndexs(void * indexs, unsigned int total, const char * sig)
 {
-	Uniforms[l] = new UniformValue(ptr, n, sig);
+	if (IndexsBufferId){
+		StateCacher->deleteIndexs(IndexsBufferId);
+	}
+	IndexTotal = total;
+	IndexSig = sig;
+	glGenBuffers(1, &IndexsBufferId);
+	StateCacher->bindIndexs(IndexsBufferId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sigSizes[sig] * IndexTotal, indexs, GL_STATIC_DRAW);
 }
 
-void GLShaderDrawer::setAttributeValue(unsigned int l, unsigned int offset, const char *sig)
+void GLShaderDrawer::drawAll()
 {
-}
+	assert(Total > 0 && IndexTotal > 0 && VertexBufferId && IndexsBufferId);
 
-void GLShaderDrawer::setAttributeData(void * ptr,unsigned int n,unsigned int stride)
-{
-}
+	GLShaderProgram *program = ShaderProgram.cast<GLShaderProgram>();
 
-void GLShaderDrawer::setIndexs(void * indexs, unsigned int n,const char * sig)
-{
-}
+	// active program
+	program->use();
 
-void GLShaderDrawer::drawAll(ITransformer *trans)
-{
+	// active textures
+	do {
+		std::map<unsigned int, core::TAuto<ITexture> >::iterator it;
+		GLTexture *glTex;
+		for (it = Textures.begin(); it != Textures.end(); it++){
+			StateCacher->setActiveTexture(it->first);
+			glTex = it->second.cast<GLTexture>();
+			glTex->bind();
+		}
+	} while(0);
+
+	// active uniforms
+	do {
+		std::map<unsigned int, core::TAuto<UniformValue> >::iterator it;
+		for (it = Uniforms.begin(); it != Uniforms.end(); it++){
+			UniformValue *dat = it->second;
+			if (program->updateUniformValue(it->first, dat->ptr, dat->n * sigSizes[dat->sig])){
+				switch(sigTypes[dat->sig]){
+				case sig_int:
+					glUniform1iv(it->first, dat->n, (GLint *)dat->ptr);
+					break;
+				case sig_float:
+					glUniform1fv(it->first, dat->n, (GLfloat *)dat->ptr);
+					break;
+				case sig_vec2:
+					glUniform2fv(it->first, dat->n, (GLfloat *)dat->ptr);
+					break;
+				case sig_mat4:
+					glUniformMatrix4fv(it->first, dat->n, GL_FALSE, (GLfloat *)dat->ptr);
+					break;
+				default:
+					assert(0);
+				}
+			}
+		}
+	} while(0);
+
+	// active attributes
+	do {
+		StateCacher->bindBuffer(VertexBufferId);
+		StateCacher->bindIndexs(IndexsBufferId);
+		
+		std::map<unsigned int, core::TAuto<AttributeValue> >::iterator it;
+		for (it = Attributes.begin(); it != Attributes.end(); it++){
+			AttributeValue *dat = it->second;
+			GLenum type;
+			switch(sigTypes[dat->sig]){
+			case sig_int:
+				type = GL_INT;
+				break;
+			case sig_float:
+				type = GL_FLOAT;
+				break;
+			}
+			glVertexAttribPointer(it->first, dat->n, type, GL_FALSE, Stride, (GLvoid *)dat->offset);
+		}
+
+		GLenum type;
+		switch(sigTypes[IndexSig]){
+		case sig_uint:
+			type = GL_UNSIGNED_INT;
+			break;
+		case sig_ushort:
+			type = GL_UNSIGNED_SHORT;
+			break;
+		}
+		glDrawElements(GL_TRIANGLES, IndexTotal, type, (GLvoid *)0);
+	} while(0);
+	
 }
 
 };

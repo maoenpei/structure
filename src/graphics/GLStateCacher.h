@@ -4,6 +4,8 @@
 #include "core/CRefObject.h"
 #include <glew.h>
 
+#define MAX_TEXTURES		16
+
 namespace graphics{
 
 	class GLStateCacher : public core::CRefObject
@@ -13,6 +15,7 @@ namespace graphics{
 		
 		void bindTexture(GLuint uTex);
 		void deleteTexture(GLuint uTex);
+		void setActiveTexture(int active);
 		void useProgram(GLuint uProg);
 		void deleteProgram(GLuint uProg);
 		void bindBuffer(GLuint uBuf);
@@ -21,7 +24,8 @@ namespace graphics{
 		void deleteIndexs(GLuint uIndexs);
 
 	private:
-		GLuint BindTexture;
+		GLuint BindTextures[MAX_TEXTURES];
+		int TextureIndex;
 		GLuint UsingProgram;
 		GLuint BindBuffer;
 		GLuint BindIndexs;

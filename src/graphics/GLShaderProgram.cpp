@@ -6,6 +6,22 @@
 
 namespace graphics{
 
+struct GLShaderProgram::UniformData : public core::CRefObject
+{
+	unsigned char *ptr;
+	unsigned int siz;
+	UniformData(void *_ptr, unsigned int _siz)
+		: siz(_siz)
+	{
+		ptr = new unsigned char[siz];
+		memcpy(ptr, _ptr, siz);
+	}
+	~UniformData()
+	{
+		delete [] ptr;
+	}
+};
+
 static GLuint compileShader(const char * source,GLenum type)
 {
 	GLuint shaderId = glCreateShader(type);
@@ -39,6 +55,20 @@ unsigned int GLShaderProgram::getTransformIndex()
 {
 	assert(TransformName != "");
 	return getUniformIndex(TransformName.c_str());
+}
+
+bool GLShaderProgram::updateUniformValue(unsigned int l,void * ptr,unsigned int siz)
+{
+	std::map<unsigned int, core::TAuto<UniformData> >::iterator it;
+	it = Uniforms.find(l);
+	if (it != Uniforms.end()){
+		UniformData *dat = it->second;
+		if (dat->siz == siz && 0 == memcmp(dat->ptr, ptr, siz)){
+			return false;
+		}
+	}
+	Uniforms[l] = new UniformData(ptr, siz);
+	return true;
 }
 
 void GLShaderProgram::use()

@@ -12,6 +12,7 @@ namespace graphics{
 	{
 	public:
 		virtual void setMode(unsigned int mode);
+		virtual void *getMode(unsigned int &mode);
 
 		virtual void push();
 		virtual void pop();

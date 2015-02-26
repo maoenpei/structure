@@ -1,32 +1,50 @@
 
 
 #include "GLStateCacher.h"
+#include <string>
+#include <assert.h>
 
 namespace graphics{
 
 GLStateCacher::GLStateCacher()
-	: BindTexture(0)
-	, UsingProgram(0)
+	: UsingProgram(0)
 	, BindBuffer(0)
 	, BindIndexs(0)
+	, TextureIndex(0)
 {
+	memset(BindTextures, 0, sizeof(BindTextures));
 }
 
 void GLStateCacher::bindTexture(GLuint uTex)
 {
-	if (uTex != BindTexture){
+	if (uTex != BindTextures[TextureIndex]){
 		glBindTexture(GL_TEXTURE_2D, uTex);
-		BindTexture = uTex;
+		BindTextures[TextureIndex] = uTex;
 	}
 }
 
 void GLStateCacher::deleteTexture(GLuint uTex)
 {
 	if (uTex){
-		if (uTex == BindTexture){
-			BindTexture = 0;
+		if (uTex == BindTextures[TextureIndex]){
+			BindTextures[TextureIndex] = 0;
 		}
 		glDeleteTextures(1, &uTex);
+	}
+}
+
+void GLStateCacher::setActiveTexture(int active)
+{
+	static GLenum glTextureIndexs[] = {
+		GL_TEXTURE0,GL_TEXTURE1,GL_TEXTURE2,GL_TEXTURE3,
+		GL_TEXTURE4,GL_TEXTURE5,GL_TEXTURE6,GL_TEXTURE7,
+		GL_TEXTURE8,GL_TEXTURE9,GL_TEXTURE10,GL_TEXTURE11,
+		GL_TEXTURE12,GL_TEXTURE13,GL_TEXTURE14,GL_TEXTURE15,
+	};
+	assert(active >= 0 && active < MAX_TEXTURES);
+	if (active != TextureIndex){
+		glActiveTexture(glTextureIndexs[active]);
+		TextureIndex = active;
 	}
 }
 
@@ -69,7 +87,7 @@ void GLStateCacher::deleteBuffer(GLuint uBuf)
 void GLStateCacher::bindIndexs(GLuint uIndexs)
 {
 	if (uIndexs != BindIndexs){
-		glBindBuffer(GL_ARRAY_BUFFER, uIndexs);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, uIndexs);
 		BindIndexs = uIndexs;
 	}
 }

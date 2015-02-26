@@ -64,6 +64,18 @@ void CTransformer::setMode(unsigned int mode)
 	head = new TransformerEntry(mode);
 }
 
+void *CTransformer::getMode(unsigned int &mode)
+{
+	mode = head->mode;
+	switch(mode){
+	case TransformMode_2D:
+		return head->tf.af->v;
+	case TransformMode_3D:
+		return head->tf.mf->v;
+	}
+	return 0;
+}
+
 void CTransformer::contact(const TAffinef & aff)
 {
 	assert(head->mode == TransformMode_2D);
