@@ -7,6 +7,8 @@
 #include "CLoopManager.h"
 #include "core/IAllocator.h"
 #include "graphics/GLGraphics.h"
+#include "engine/CSceneManager.h"
+#include "ctrl/IDelegate.h"
 
 static int GetMilliCounter()
 {
@@ -39,15 +41,21 @@ namespace view{
 #ifdef WINGL
 		WinWindow * window = new WinGLWindow(w, h);
 		graphics::GLGraphics *graph = new graphics::GLGraphics();
+		engine::CSceneManager *manager = new engine::CSceneManager(this);
 #endif
 		Graphics = graph;
 		Window = window;
+		SceneManager = manager;
 
 		CLoopManager * looper = new CLoopManager();
 		Looper = looper;
 		
 		window->createWindow();
 		graph->initAPIs();
+
+		ctrl::IDelegate *deleg = dynamic_cast<ctrl::IDelegate *>(reg->find(DELEGATE_NAME));
+		deleg->onInitialized(this);
+		
 		int milli, milli2;
 		bool quit = false;
 		bool hasMessage;
@@ -68,6 +76,8 @@ namespace view{
 				}
 			}
 		}
+
+		deleg->onReadytoQuit();
 		window->destroyWindow();
 		reg->releaseAll();
 		

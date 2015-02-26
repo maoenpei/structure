@@ -7,6 +7,7 @@
 #include "graphics/IGraphics.h"
 #include "graphics/IGraphicsCacher.h"
 #include "core/TAuto.h"
+#include "view/IPlatform.h"
 
 namespace engine{
 
@@ -15,7 +16,7 @@ namespace engine{
 	public:
 		virtual INodeCamera *getCamera();
 
-		CSceneNode();
+		CSceneNode(view::IPlatform *platform);
 
 	protected:
 		core::TAuto<ISceneManager> Manager;

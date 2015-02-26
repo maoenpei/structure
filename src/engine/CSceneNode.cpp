@@ -7,9 +7,8 @@
 
 namespace engine{
 
-CSceneNode::CSceneNode()
+CSceneNode::CSceneNode(view::IPlatform *platform)
 {
-	view::IPlatform *platform = dynamic_cast<view::IPlatform *>(getRegistry()->find(IPLATFORM_NAME));
 	Manager = platform->getSceneManager();
 	G = platform->getGraphics();
 	Cacher = platform->getCacher();

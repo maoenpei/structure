@@ -8,6 +8,7 @@ namespace engine{
 	class INodeCamera : public virtual core::IRef
 	{
 	public:
+		// dispose transformation to graphics
 		virtual void dispose() = 0;
 
 		virtual void identity() = 0;

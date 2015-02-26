@@ -266,6 +266,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CSceneManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CSceneManager.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\engine\CSceneNode.cpp"
 				>
 			</File>
@@ -343,6 +351,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\core\IData.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\ctrl\IDelegate.h"
 				>
 			</File>
 			<File
@@ -518,6 +530,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\src\ctrl\CDelegate.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\ctrl\CDelegate.h"
+			>
+		</File>
 		<File
 			RelativePath=".\main.cpp"
 			>

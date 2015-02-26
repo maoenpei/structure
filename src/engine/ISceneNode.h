@@ -3,10 +3,10 @@
 
 #include "core/IRef.h"
 #include "ISceneManager.h"
+#include "INodeCamera.h"
 
 namespace engine{
 
-	class INodeCamera;
 	class ISceneNode : public virtual core::IRef
 	{
 	public:
