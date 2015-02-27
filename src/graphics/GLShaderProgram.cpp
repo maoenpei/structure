@@ -22,11 +22,28 @@ struct GLShaderProgram::UniformData : public core::CRefObject
 	}
 };
 
+static void checkShader(GLuint obj)
+{
+	GLint status = 0;
+	glGetShaderiv(obj, GL_COMPILE_STATUS, &status);
+	if (status)
+		return ;
+	GLint logLength = 0;
+	glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &logLength);
+	if (logLength > 0){
+		char *bytes = new char[logLength];
+		glGetShaderInfoLog(obj, logLength, &logLength, bytes);
+		delete [] bytes;
+	}
+	assert(logLength <= 0);
+}
+
 static GLuint compileShader(const char * source,GLenum type)
 {
 	GLuint shaderId = glCreateShader(type);
 	glShaderSource(shaderId, 1, &source, 0);
 	glCompileShader(shaderId);
+	checkShader(shaderId);
 	return shaderId;
 }
 

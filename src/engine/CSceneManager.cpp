@@ -7,6 +7,7 @@ namespace engine{
 
 CSceneManager::CSceneManager(view::IPlatform *platform)
 {
+	G = platform->getGraphics();
 }
 
 void CSceneManager::changeRootNode(ISceneNode * node)

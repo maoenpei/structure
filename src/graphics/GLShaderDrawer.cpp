@@ -105,7 +105,10 @@ void GLShaderDrawer::drawAll()
 	do {
 		StateCacher->bindBuffer(VertexBufferId);
 		StateCacher->bindIndexs(IndexsBufferId);
-		
+
+		int c = (int)Attributes.size();
+		int *attribIds = new int[c];
+		c = 0;
 		std::map<unsigned int, core::TAuto<AttributeValue> >::iterator it;
 		for (it = Attributes.begin(); it != Attributes.end(); it++){
 			AttributeValue *dat = it->second;
@@ -118,13 +121,22 @@ void GLShaderDrawer::drawAll()
 				type = GL_FLOAT;
 				break;
 			}
+			attribIds[c++] = it->first;
 			glVertexAttribPointer(it->first, dat->n, type, GL_FALSE, Stride, (GLvoid *)dat->offset);
 		}
+		StateCacher->setAttribStates(attribIds, c);
+		delete [] attribIds;
 
 		GLenum type;
 		switch(sigTypes[IndexSig]){
+		case sig_int:
+			type = GL_INT;
+			break;
 		case sig_uint:
 			type = GL_UNSIGNED_INT;
+			break;
+		case sig_short:
+			type = GL_SHORT;
 			break;
 		case sig_ushort:
 			type = GL_UNSIGNED_SHORT;

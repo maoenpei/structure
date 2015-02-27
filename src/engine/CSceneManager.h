@@ -5,6 +5,7 @@
 #include "core/CRefObject.h"
 #include "core/TAuto.h"
 #include "view/IPlatform.h"
+#include "graphics/IGraphics.h"
 
 namespace engine{
 
@@ -18,6 +19,7 @@ namespace engine{
 		CSceneManager(view::IPlatform *platform);
 
 	private:
+		core::TAuto<graphics::IGraphics> G;
 		core::TAuto<ISceneNode> RootNode;
 	};
 	

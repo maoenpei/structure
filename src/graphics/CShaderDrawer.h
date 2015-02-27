@@ -61,14 +61,6 @@ enum{
 	sig_max
 };
 
-#define SIG_INT			"int"
-#define SIG_UINT		"uint"
-#define SIG_SHORT		"short"
-#define SIG_USHORT		"ushort"
-#define SIG_FLOAT		"float"
-#define SIG_VEC2		"vec2"
-#define SIG_MAT4		"mat4"
-
 extern std::map<std::string, int> sigSizes;
 extern std::map<std::string, unsigned int> sigTypes;
 

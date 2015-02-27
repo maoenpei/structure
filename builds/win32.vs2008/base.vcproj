@@ -41,6 +41,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				InlineFunctionExpansion="0"
+				EnableIntrinsicFunctions="false"
 				AdditionalIncludeDirectories="../../src;&quot;../../thirdlibs/libpng-1.6.16&quot;;&quot;../../thirdlibs/glew-1.9.0/include/GL&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WINGL"
 				MinimalRebuild="true"

@@ -69,6 +69,7 @@ namespace view{
 			}else if (!hasMessage){
 				milli = GetMilliCounter();
 				looper->doLoop(milli);
+				manager->doDraw();
 				window->onSwapBuffer();
 				milli2 = GetMilliCounter();
 				if (milli2 - milli < MilliInterval){

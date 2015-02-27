@@ -102,6 +102,25 @@ void GLStateCacher::deleteIndexs(GLuint uIndexs)
 	}
 }
 
+void GLStateCacher::setAttribStates(GLint arr[], int n)
+{
+	std::set<GLint> values;
+	for (int i = 0; i<n; i++){
+		if (AttributeStates.find(arr[i]) == AttributeStates.end()){
+			glEnableVertexAttribArray(arr[i]);
+		}
+		values.insert(arr[i]);
+	}
+
+	std::set<GLint>::iterator it;
+	for (it = AttributeStates.begin(); it != AttributeStates.end(); it++){
+		if (values.find(*it) == values.end()){
+			glDisableVertexAttribArray(*it);
+		}
+	}
+	AttributeStates.swap(values);
+}
+
 };
 
 
