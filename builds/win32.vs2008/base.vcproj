@@ -188,6 +188,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CControlNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CControlNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\CFileInput.cpp"
 				>
 			</File>
@@ -257,6 +265,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\engine\CNodeCamera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CProjectionNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CProjectionNode.h"
 				>
 			</File>
 			<File

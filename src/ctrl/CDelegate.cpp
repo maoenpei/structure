@@ -8,6 +8,7 @@
 #include "graphics/IShaderProgram.h"
 #include "graphics/IShaderDrawer.h"
 #include "engine/CNodeCamera.h"
+#include "engine/CProjectionNode.h"
 
 const char vertexShader[] = 
 "attribute vec2 in_pos;"
@@ -37,11 +38,10 @@ class TestNode : public engine::CSceneNode
 public:
 	virtual void draw()
 	{
-		graphics::ITransformer *trans = G->getTransformer();
-		trans->push();
-		Camera->dispose(trans);
+		Transformer->push();
+		Camera->dispose(Transformer);
 		G->pipeline(drawer);
-		trans->pop();
+		Transformer->pop();
 	}
 
 	TestNode(view::IPlatform *platform)
@@ -67,9 +67,9 @@ public:
 
 		Camera = new engine::CNodeCamera();
 		engine::INodeCamera * camera = getCamera();
-		camera->rotate(3.141592653f / 5);
-		camera->scale(1/400.f, 1/240.f);
-		camera->move(-1, -1);
+		camera->rotate(3.141592653f / 6);
+//		camera->scale(1/400.f, 1/240.f);
+//		camera->move(-1, -1);
 	}
 	POSITION pos[4];
 	unsigned short idxs[6];
@@ -86,7 +86,11 @@ CDelegate::CDelegate()
 
 void CDelegate::onInitialized(view::IPlatform *platform)
 {
-	platform->getSceneManager()->changeRootNode(new TestNode(platform));
+	TestNode *node = new TestNode(platform);
+	engine::CProjectionNode *project = new engine::CProjectionNode(platform);
+	project->acceptNode(node);
+	project->setRegion(model::Sizef(800.f, 480.f));
+	platform->getSceneManager()->changeRootNode(project);
 }
 
 void CDelegate::onReadytoQuit()

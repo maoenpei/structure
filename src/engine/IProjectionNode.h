@@ -9,8 +9,8 @@ namespace engine{
 	class IProjectionNode : public virtual IControlNode
 	{
 	public:
-		virtual void setVolume(const model::Volumef &vol) = 0;
-		virtual const model::Volumef &getVolume() = 0;
+		virtual void setRegion(const model::Sizef &siz) = 0;
+		virtual const model::Sizef &getRegion() = 0;
 	};
 	
 };

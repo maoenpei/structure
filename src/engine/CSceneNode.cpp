@@ -9,9 +9,8 @@ namespace engine{
 
 CSceneNode::CSceneNode(view::IPlatform *platform)
 {
-	Manager = platform->getSceneManager();
 	G = platform->getGraphics();
-	Cacher = platform->getCacher();
+	Transformer = G->getTransformer();
 }
 
 INodeCamera *CSceneNode::getCamera()
@@ -21,11 +20,10 @@ INodeCamera *CSceneNode::getCamera()
 
 void CSceneNode::draw()
 {
-	graphics::ITransformer *trans = G->getTransformer();
-	trans->push();
-	Camera->dispose(trans);
-	raw_draw();
-	trans->pop();
+	Transformer->push();
+	Camera->dispose(Transformer);
+	this->raw_draw();
+	Transformer->pop();
 }
 
 void CSceneNode::raw_draw()
