@@ -360,6 +360,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\IControlNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\IData.h"
 				>
 			</File>
@@ -473,10 +477,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\graphics\ITransformer.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\engine\ITransformNode.h"
 				>
 			</File>
 			<File

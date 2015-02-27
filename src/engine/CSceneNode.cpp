@@ -19,6 +19,19 @@ INodeCamera *CSceneNode::getCamera()
 	return Camera;
 }
 
+void CSceneNode::draw()
+{
+	graphics::ITransformer *trans = G->getTransformer();
+	trans->push();
+	Camera->dispose(trans);
+	raw_draw();
+	trans->pop();
+}
+
+void CSceneNode::raw_draw()
+{
+}
+
 };
 
 

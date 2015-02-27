@@ -15,6 +15,9 @@ namespace engine{
 	{
 	public:
 		virtual INodeCamera *getCamera();
+		virtual void draw();
+
+		virtual void raw_draw();
 
 		CSceneNode(view::IPlatform *platform);
 
