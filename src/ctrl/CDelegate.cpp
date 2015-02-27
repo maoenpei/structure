@@ -7,6 +7,7 @@
 #include "view/IPlatform.h"
 #include "graphics/IShaderProgram.h"
 #include "graphics/IShaderDrawer.h"
+#include "engine/CNodeCamera.h"
 
 const char vertexShader[] = 
 "attribute vec2 in_pos;"
@@ -36,23 +37,26 @@ class TestNode : public engine::CSceneNode
 public:
 	virtual void draw()
 	{
+		graphics::ITransformer *trans = G->getTransformer();
+		trans->push();
+		Camera->dispose(trans);
 		G->pipeline(drawer);
+		trans->pop();
 	}
 
 	TestNode(view::IPlatform *platform)
 		: CSceneNode(platform)
 	{
 		pos[0] = POSITION(0.f, 0.f);
-		pos[1] = POSITION(1.f, 0.f);
-		pos[2] = POSITION(0.f, 1.f);
-		pos[3] = POSITION(0.8f, 0.8f);
+		pos[1] = POSITION(200.f, 0.f);
+		pos[2] = POSITION(0.f, 200.f);
+		pos[3] = POSITION(200.f, 200.f);
 		idxs[0] = 0;
 		idxs[1] = 1;
 		idxs[2] = 2;
 		idxs[3] = 1;
 		idxs[4] = 3;
 		idxs[5] = 2;
-		G = platform->getGraphics();
 		G->loadProgram(program, vertexShader, fragShader);
 		program->setTransformName("uni_trans");
 		l = program->getAttributeIndex("in_pos");
@@ -60,10 +64,15 @@ public:
 		drawer->setAttributeValue(l, 0, 2, SIG_FLOAT);
 		drawer->setAttributeData(&pos, 4, sizeof(pos[0]));
 		drawer->setIndexs(idxs, 6, SIG_USHORT);
+
+		Camera = new engine::CNodeCamera();
+		engine::INodeCamera * camera = getCamera();
+		camera->rotate(3.141592653f / 5);
+		camera->scale(1/400.f, 1/240.f);
+		camera->move(-1, -1);
 	}
 	POSITION pos[4];
 	unsigned short idxs[6];
-	core::TAuto<graphics::IGraphics> G;
 	core::TAuto<graphics::IShaderProgram> program;
 	core::TAuto<graphics::IShaderDrawer> drawer;
 	unsigned int l;

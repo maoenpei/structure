@@ -252,6 +252,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CNodeCamera.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CNodeCamera.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\CRefObject.cpp"
 				>
 			</File>

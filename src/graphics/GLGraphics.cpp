@@ -39,7 +39,7 @@ void GLGraphics::loadProgram(core::TAuto<IShaderProgram> &program, const char *v
 
 void GLGraphics::cleanBuffer()
 {
-	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void GLGraphics::pipeline(IShaderDrawer * drawer)

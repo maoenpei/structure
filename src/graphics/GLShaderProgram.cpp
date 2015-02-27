@@ -33,9 +33,9 @@ static void checkShader(GLuint obj)
 	if (logLength > 0){
 		char *bytes = new char[logLength];
 		glGetShaderInfoLog(obj, logLength, &logLength, bytes);
+		assert(false);
 		delete [] bytes;
 	}
-	assert(logLength <= 0);
 }
 
 static GLuint compileShader(const char * source,GLenum type)

@@ -38,18 +38,22 @@ namespace view{
 		DllAllocator allocator;
 		reg->regist(&allocator, IALLOCATOR_NAME);
 		
-#ifdef WINGL
-		WinWindow * window = new WinGLWindow(w, h);
-		graphics::GLGraphics *graph = new graphics::GLGraphics();
-		engine::CSceneManager *manager = new engine::CSceneManager(this);
-#endif
-		Graphics = graph;
-		Window = window;
-		SceneManager = manager;
-
 		CLoopManager * looper = new CLoopManager();
 		Looper = looper;
 		
+#ifdef WINGL
+		WinWindow * window = new WinGLWindow(w, h);
+#endif
+		Window = window;
+#ifdef WINGL
+		graphics::GLGraphics *graph = new graphics::GLGraphics();
+#endif
+		Graphics = graph;
+#ifdef WINGL
+		engine::CSceneManager *manager = new engine::CSceneManager(this);
+#endif
+		SceneManager = manager;
+
 		window->createWindow();
 		graph->initAPIs();
 

@@ -19,6 +19,15 @@ namespace core{
 			ptr = _ptr;
 			return *this;
 		}
+		inline TAuto &operator =(const TAuto &copy){
+			if (copy.ptr) copy.ptr->grab();
+			if (ptr) ptr->drop();
+			ptr = copy.ptr;
+			return *this;
+		}
+		inline I &operator *(){
+			return *ptr;
+		}
 		inline operator I*() const{return ptr;}
 		inline I *operator ->() const{return ptr;}
 		inline bool operator ==(I *_ptr) const{return ptr == _ptr;}

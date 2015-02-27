@@ -20,6 +20,14 @@ struct CTransformer::TransformerEntry : public core::CRefObject
 			tf.mf = new TMatrixf;
 		}
 	}
+	TransformerEntry(const TransformerEntry &copy) : mode(copy.mode)
+	{
+		if (mode == TransformMode_2D){
+			tf.af = new TAffinef(*copy.tf.af);
+		}else{
+			tf.mf = new TMatrixf(*copy.tf.mf);
+		}
+	}
 	~TransformerEntry()
 	{
 		if (mode == TransformMode_2D){
@@ -45,10 +53,10 @@ CTransformer::CTransformer()
 void CTransformer::push()
 {
 	if (TailIndex < (int)Stack.size()){
-		Stack[TailIndex++] = head;
+		Stack[TailIndex++] = new TransformerEntry(*head);
 	}else{
 		TailIndex++;
-		Stack.push_back(head);
+		Stack.push_back(new TransformerEntry(*head));
 	}
 }
 

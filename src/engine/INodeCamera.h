@@ -2,6 +2,7 @@
 #define __BASE_I_NODE_CAMERA_H__
 
 #include "core/IRef.h"
+#include "graphics/ITransformer.h"
 
 namespace engine{
 
@@ -9,7 +10,7 @@ namespace engine{
 	{
 	public:
 		// dispose transformation to graphics
-		virtual void dispose() = 0;
+		virtual void dispose(graphics::ITransformer * trans) = 0;
 
 		virtual void identity() = 0;
 		virtual void move(float mx, float my) = 0;
