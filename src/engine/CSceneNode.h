@@ -8,6 +8,7 @@
 #include "graphics/IGraphicsCacher.h"
 #include "core/TAuto.h"
 #include "view/IPlatform.h"
+#include "graphics/IShaderDrawer.h"
 
 namespace engine{
 
@@ -26,6 +27,7 @@ namespace engine{
 		core::TAuto<graphics::ITransformer> Transformer;
 		
 		core::TAuto<INodeCamera> Camera;
+		core::TAuto<graphics::IShaderDrawer> Drawer;
 	};
 	
 };

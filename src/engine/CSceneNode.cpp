@@ -20,14 +20,21 @@ INodeCamera *CSceneNode::getCamera()
 
 void CSceneNode::draw()
 {
-	Transformer->push();
-	Camera->dispose(Transformer);
+	if (Camera){
+		Transformer->push();
+		Camera->dispose(Transformer);
+	}
 	this->raw_draw();
-	Transformer->pop();
+	if (Camera){
+		Transformer->pop();
+	}
 }
 
 void CSceneNode::raw_draw()
 {
+	if (Drawer){
+		G->pipeline(Drawer);
+	}
 }
 
 };
