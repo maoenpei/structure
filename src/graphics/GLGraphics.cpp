@@ -44,8 +44,8 @@ void GLGraphics::cleanBuffer()
 
 void GLGraphics::pipeline(IShaderDrawer * drawer)
 {
-	GLShaderDrawer *glDrawer = dynamic_cast<GLShaderDrawer *>(drawer);
-	GLShaderProgram *glProgram = dynamic_cast<GLShaderProgram *>(glDrawer->getProgram());
+	GLShaderDrawer *glDrawer = drawer->cast<GLShaderDrawer>();
+	GLShaderProgram *glProgram = glDrawer->getProgram()->cast<GLShaderProgram>();
 
 	// update transform matrix
 	unsigned int l = glProgram->getTransformIndex();

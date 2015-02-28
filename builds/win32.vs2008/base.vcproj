@@ -236,6 +236,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\graphics\CGraphicsCacher.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\CGraphicsCacher.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\CImage.cpp"
 				>
 			</File>

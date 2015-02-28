@@ -92,10 +92,10 @@ void CLoopManager::doLoop(int milliKey)
 				if (entry->runnable){
 					switch(entry->runType){
 					case RunType_Runnable:
-						entry->runnable.cast<core::IRunnable>()->run();
+						entry->runnable->cast<core::IRunnable>()->run();
 						break;
 					case RunType_IRunnable:
-						entry->runnable.cast<core::IRunnableInt>()->run(counter);
+						entry->runnable->cast<core::IRunnableInt>()->run(counter);
 						break;
 					}
 				}

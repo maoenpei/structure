@@ -3,6 +3,7 @@
 
 #include "core/IRef.h"
 #include "ITexture.h"
+#include "IShaderProgram.h"
 
 namespace graphics{
 	

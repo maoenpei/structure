@@ -12,6 +12,9 @@ namespace core{
 	public:
 		virtual IRef * grab() = 0;
 		virtual IRef * drop() = 0;
+
+		template<class I>
+		inline I *cast(){return dynamic_cast<I *>(this);}
 	};
 	
 };

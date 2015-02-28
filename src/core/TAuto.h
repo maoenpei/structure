@@ -32,8 +32,6 @@ namespace core{
 		inline I *operator ->() const{return ptr;}
 		inline bool operator ==(I *_ptr) const{return ptr == _ptr;}
 		inline bool operator !=(I *_ptr) const{return ptr != _ptr;}
-		template<typename II>
-		inline II *cast() const{return dynamic_cast<II *>(ptr);}
 	};
 	
 };

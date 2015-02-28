@@ -67,7 +67,7 @@ public:
 
 		Camera = new engine::CNodeCamera();
 		engine::INodeCamera * camera = getCamera();
-		camera->rotate(3.141592653f / 6);
+		camera->rotate(-3.141592653f / 3);
 //		camera->scale(1/400.f, 1/240.f);
 //		camera->move(-1, -1);
 	}

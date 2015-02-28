@@ -25,11 +25,12 @@ const model::Sizef &CProjectionNode::getRegion()
 
 void CProjectionNode::draw()
 {
-	Transformer->push();
+	// 2d projection must be the formmer projection, so no push and pop to save a node
+	//Transformer->push();
 	Transformer->setMode(graphics::TransformMode_2D);
 	Transformer->contact(Affine);
 	CControlNode::draw();
-	Transformer->pop();
+	//Transformer->pop();
 }
 
 };

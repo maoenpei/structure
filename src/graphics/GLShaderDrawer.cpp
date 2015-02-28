@@ -59,7 +59,7 @@ void GLShaderDrawer::drawAll()
 {
 	assert(Total > 0 && IndexTotal > 0 && VertexBufferId && IndexsBufferId);
 
-	GLShaderProgram *program = ShaderProgram.cast<GLShaderProgram>();
+	GLShaderProgram *program = ShaderProgram->cast<GLShaderProgram>();
 
 	// active program
 	program->use();
@@ -70,7 +70,7 @@ void GLShaderDrawer::drawAll()
 		GLTexture *glTex;
 		for (it = Textures.begin(); it != Textures.end(); it++){
 			StateCacher->setActiveTexture(it->first);
-			glTex = it->second.cast<GLTexture>();
+			glTex = it->second->cast<GLTexture>();
 			glTex->bind();
 		}
 	} while(0);

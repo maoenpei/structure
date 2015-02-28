@@ -7,6 +7,7 @@
 #include "CLoopManager.h"
 #include "core/IAllocator.h"
 #include "graphics/GLGraphics.h"
+#include "graphics/CGraphicsCacher.h"
 #include "engine/CSceneManager.h"
 #include "ctrl/IDelegate.h"
 
@@ -49,6 +50,7 @@ namespace view{
 		graphics::GLGraphics *graph = new graphics::GLGraphics();
 #endif
 		Graphics = graph;
+		Cacher = new graphics::CGraphicsCacher(graph);
 #ifdef WINGL
 		engine::CSceneManager *manager = new engine::CSceneManager(this);
 #endif
@@ -57,7 +59,7 @@ namespace view{
 		window->createWindow();
 		graph->initAPIs();
 
-		ctrl::IDelegate *deleg = dynamic_cast<ctrl::IDelegate *>(reg->find(DELEGATE_NAME));
+		ctrl::IDelegate *deleg = reg->find(DELEGATE_NAME)->cast<ctrl::IDelegate>();
 		deleg->onInitialized(this);
 		
 		int milli, milli2;
