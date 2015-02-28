@@ -10,9 +10,7 @@ namespace graphics{
 	{
 		T v[6];
 		inline TAffine(){
-			memset(v, 0, sizeof(v));
-			v[0] = 1;
-			v[3] = 1;
+			identity();
 		}
 		inline TAffine(T _a, T _b, T _c, T _d, T _x, T _y){
 			v[0] = _a;
@@ -27,6 +25,10 @@ namespace graphics{
 		}
 		inline void operator =(const TAffine &copy){
 			memcpy(v, copy.v, sizeof(v));
+		}
+		inline void identity(){
+			memset(v, 0, sizeof(v));
+			v[0] = v[3] = 1;
 		}
 		inline void contact(TAffine &aff, const TAffine &other) const{
 			aff.v[0] = v[0]*other.v[0]+v[2]*other.v[1];

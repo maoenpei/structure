@@ -284,6 +284,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CNodeCamera3d.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CNodeCamera3d.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\engine\CProjectionNode.cpp"
 				>
 			</File>

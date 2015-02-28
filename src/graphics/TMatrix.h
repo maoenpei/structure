@@ -10,14 +10,17 @@ namespace graphics{
 	{
 		T v[16];
 		inline TMatrix(){
-			memset(v, 0, sizeof(v));
-			v[0] = v[5] = v[10] = v[15] = 1;
+			identity();
 		}
 		inline TMatrix(const TMatrix &copy){
 			memcpy(v, copy.v, sizeof(v));
 		}
 		inline void operator =(const TMatrix &copy){
 			memcpy(v, copy.v, sizeof(v));
+		}
+		inline void identity(){
+			memset(v, 0, sizeof(v));
+			v[0] = v[5] = v[10] = v[15] = 1;
 		}
 		inline void contact(TMatrix &mat, const TMatrix &other) const{
 			mat.v[0] = v[0]*other.v[0] + v[4]*other.v[1] + v[8]*other.v[2] + v[12]*other.v[3];
