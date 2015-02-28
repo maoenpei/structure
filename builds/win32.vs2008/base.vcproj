@@ -236,6 +236,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CGatherNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CGatherNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\graphics\CGraphicsCacher.cpp"
 				>
 			</File>
