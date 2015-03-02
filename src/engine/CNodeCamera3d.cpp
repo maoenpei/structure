@@ -75,10 +75,33 @@ void CNodeCamera3d::scale(float sx,float sy,float sz)
 }
 
 // make axis->T, sita->R
-// G' = T-1 * R * T * G
+// G' = T * R * T(-1) * G
 void CNodeCamera3d::rotate(const model::Vectorf &axis, float sita)
 {
-	assert(false);
+	if ((axis.x == 0 && axis.y == 0 && axis.z == 0) || sita == 0){
+		return;
+	}
+	axis.normalize();
+	graphics::TMatrixf matrix(Matrix);
+	float sn = sin(sita);
+	float cs = cos(sita);
+	float ix2 = axis.x*axis.x;
+	float iy2 = axis.y*axis.y;
+	float iz2 = axis.z*axis.z;
+	float ixy = axis.x*axis.y;
+	float iyz = axis.y*axis.z;
+	float izx = axis.z*axis.x;
+	graphics::TMatrixf matrix_t;
+	matrix_t.v[0] = cs * (1-ix2) + ix2;
+	matrix_t.v[1] = cs * (-ixy) + sn * (axis.z) + ixy;
+	matrix_t.v[2] = cs * (-izx) * sn * (-axis.y) + izx;
+	matrix_t.v[4] = cs * (-ixy) + sn * (-axis.z) + ixy;
+	matrix_t.v[5] = cs * (1-iy2) + iy2;
+	matrix_t.v[6] = cs * (-iyz) + sn * (axis.x) + iyz;
+	matrix_t.v[8] = cs * (izx) + sn * (axis.y) + izx;
+	matrix_t.v[9] = cs * (-iyz) + sn * (-axis.x) + iyz;
+	matrix_t.v[10] = cs * (1-iz2) + iz2;
+	matrix_t.contact33(Matrix, matrix);
 }
 
 };

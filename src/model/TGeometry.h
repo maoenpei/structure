@@ -1,6 +1,8 @@
 #ifndef __BASE_GEOMETRY_H__
 #define __BASE_GEOMETRY_H__
 
+#include <math.h>
+
 namespace model{
 
 	template<typename T>
@@ -41,6 +43,17 @@ namespace model{
 		inline Vector3d() : x(0), y(0), z(0){}
 		inline Vector3d(T _x, T _y, T _z) : x(_x), y(_y), z(_z){}
 		inline Vector3d(const Vector3d &copy) : x(copy.x), y(copy.y), z(copy.z){}
+		inline void normalize(){
+			float a_len = sqrt(x*x + y*y + z*z);
+			if (a_len <= 0){
+				return ;
+			}
+			if (a_len != 1.0f){
+				x /= a_len;
+				y /= a_len;
+				z /= a_len;
+			}
+		}
 	};
 
 	template<typename T>

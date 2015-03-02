@@ -43,6 +43,23 @@ namespace graphics{
 			mat.v[14] = v[2]*other.v[12] + v[6]*other.v[13] + v[10]*other.v[14] + v[14]*other.v[15];
 			mat.v[15] = v[3]*other.v[12] + v[7]*other.v[13] + v[11]*other.v[14] + v[15]*other.v[15];
 		}
+		inline void contact33(TMatrix &mat, const TMatrix &other){
+			mat.v[0] = v[0] * other.v[0] + v[4] * other.v[1] + v[8] * other.v[3];
+			mat.v[1] = v[1] * other.v[0] + v[5] * other.v[1] + v[9] * other.v[3];
+			mat.v[2] = v[2] * other.v[0] + v[6] * other.v[1] + v[10] * other.v[3];
+			
+			mat.v[4] = v[0] * other.v[4] + v[4] * other.v[5] + v[8] * other.v[6];
+			mat.v[5] = v[1] * other.v[4] + v[5] * other.v[5] + v[9] * other.v[6];
+			mat.v[6] = v[2] * other.v[4] + v[6] * other.v[5] + v[10] * other.v[6];
+			
+			mat.v[8] = v[0] * other.v[8] + v[4] * other.v[9] + v[8] * other.v[10];
+			mat.v[9] = v[1] * other.v[8] + v[5] * other.v[9] + v[9] * other.v[10];
+			mat.v[10] = v[2] * other.v[8] + v[6] * other.v[9] + v[10] * other.v[10];
+			
+			mat.v[12] = v[0] * other.v[12] + v[4] * other.v[13] + v[8] * other.v[14];
+			mat.v[13] = v[1] * other.v[12] + v[5] * other.v[13] + v[9] * other.v[14];
+			mat.v[14] = v[2] * other.v[12] + v[6] * other.v[13] + v[10] * other.v[14];
+		}
 	};
 
 	typedef TMatrix<float> TMatrixf;
