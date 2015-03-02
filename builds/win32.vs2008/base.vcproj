@@ -188,14 +188,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\CControlNode.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\engine\CControlNode.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\model\CFileInput.cpp"
 				>
 			</File>
@@ -241,6 +233,22 @@
 			</File>
 			<File
 				RelativePath="..\..\src\engine\CGatherNode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CGatherNode2d.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CGatherNode2d.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CGatherNode3d.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CGatherNode3d.h"
 				>
 			</File>
 			<File
@@ -340,6 +348,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\CSpriteNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CSpriteNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\CStaticObject.cpp"
 				>
 			</File>
@@ -397,10 +413,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\core\IAllocator.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\engine\IControlNode.h"
 				>
 			</File>
 			<File

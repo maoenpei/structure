@@ -5,7 +5,7 @@
 namespace engine{
 
 CProjectionNode::CProjectionNode(view::IPlatform *platform)
-	: CControlNode(platform)
+	: CGatherNode(platform)
 {
 }
 
@@ -29,7 +29,7 @@ void CProjectionNode::draw()
 	//Transformer->push();
 	Transformer->setMode(graphics::TransformMode_2D);
 	Transformer->contact(Affine);
-	CControlNode::draw();
+	CGatherNode::draw();
 	//Transformer->pop();
 }
 

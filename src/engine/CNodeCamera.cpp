@@ -27,8 +27,6 @@ void CNodeCamera::scale(float sx,float sy)
 	Affine.v[1] *= sy;
 	Affine.v[2] *= sx;
 	Affine.v[3] *= sy;
-	Affine.v[4] *= sx;
-	Affine.v[5] *= sy;
 }
 
 void CNodeCamera::rotate(float sita)
@@ -41,8 +39,6 @@ void CNodeCamera::rotate(float sita)
 	Affine.v[1] = sn * aff.v[0] + cs * aff.v[1];
 	Affine.v[2] = cs * aff.v[2] - sn * aff.v[3];
 	Affine.v[3] = sn * aff.v[2] + cs * aff.v[3];
-	Affine.v[4] = cs * aff.v[4] - sn * aff.v[5];
-	Affine.v[5] = sn * aff.v[4] + cs * aff.v[5];
 }
 
 };

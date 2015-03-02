@@ -2,12 +2,12 @@
 #define __BASE_PROJECTION_NODE_H__
 
 #include "IProjectionNode.h"
-#include "CControlNode.h"
+#include "CGatherNode.h"
 #include "graphics/TAffine.h"
 
 namespace engine{
 
-	class CProjectionNode : public CControlNode, public virtual IProjectionNode
+	class CProjectionNode : public CGatherNode, public virtual IProjectionNode
 	{
 	public:
 		virtual void setRegion(const model::Sizef &siz);

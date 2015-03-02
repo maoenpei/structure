@@ -75,6 +75,24 @@ namespace model{
 		inline Bound3d(const Bound3d &copy) : x(copy.x), y(copy.y), z(copy.z), w(copy.w), h(copy.h), d(copy.d){}
 	};
 
+	template<typename T>
+	struct Color3ch
+	{
+		T r, g, b;
+		Color3ch() : r(0), g(0), b(0){}
+		Color3ch(T _r, T _g, T _b) : r(_r), g(_g), b(_b){}
+		Color3ch(int _r, int _g, int _b) : r((T)_r/255), g((T)_g/255), b((T)_b/255){}
+	};
+
+	template<typename T>
+	struct Color4ch
+	{
+		T r, g, b, a;
+		Color4ch() : r(0), g(0), b(0), a(1){}
+		Color4ch(T _r, T _g, T _b, T _a) : r(_r), g(_g), b(_b), a(_a){}
+		Color4ch(int _r, int _g, int _b, int _a) : r((T)_r/255), g((T)_g/255), b((T)_b/255), a((T)_a/255){}
+	};
+
 	typedef Point2d<int> Pointi;
 	typedef Size2d<int> Sizei;
 	typedef Rect2d<int> Recti;
@@ -88,6 +106,11 @@ namespace model{
 	typedef Vector3d<float> Vectorf;
 	typedef Volume3d<float> Volumef;
 	typedef Bound3d<float> Boundf;
+
+	typedef Color3ch<float> Color3f;
+	typedef Color3ch<double> Color3d;
+	typedef Color4ch<float> Color4f;
+	typedef Color4ch<double> Color4d;
 	
 };
 

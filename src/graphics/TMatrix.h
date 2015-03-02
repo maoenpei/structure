@@ -55,10 +55,6 @@ namespace graphics{
 			mat.v[8] = v[0] * other.v[8] + v[4] * other.v[9] + v[8] * other.v[10];
 			mat.v[9] = v[1] * other.v[8] + v[5] * other.v[9] + v[9] * other.v[10];
 			mat.v[10] = v[2] * other.v[8] + v[6] * other.v[9] + v[10] * other.v[10];
-			
-			mat.v[12] = v[0] * other.v[12] + v[4] * other.v[13] + v[8] * other.v[14];
-			mat.v[13] = v[1] * other.v[12] + v[5] * other.v[13] + v[9] * other.v[14];
-			mat.v[14] = v[2] * other.v[12] + v[6] * other.v[13] + v[10] * other.v[14];
 		}
 	};
 

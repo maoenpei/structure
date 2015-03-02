@@ -44,10 +44,10 @@ public:
 	TestNode(view::IPlatform *platform)
 		: CSceneNode(platform)
 	{
-		pos[0] = POSITION(10.f, 10.f);
+		pos[0] = POSITION(0.f, 0.f);
 		pos[1] = POSITION(200.f, 0.f);
 		pos[2] = POSITION(0.f, 200.f);
-		pos[3] = POSITION(210.f, 210.f);
+		pos[3] = POSITION(200.f, 200.f);
 		idxs[0] = 0;
 		idxs[1] = 1;
 		idxs[2] = 2;
@@ -64,9 +64,9 @@ public:
 		Drawer->setIndexs(idxs, 6, SIG_USHORT);
 
 		Camera = new engine::CNodeCamera();
-//		Camera->rotate(-3.141592653f / 6);
+		Camera->rotate(-3.141592653f / 6);
 //		Camera->scale(1/400.f, 1/240.f);
-//		Camera->move(-1, -1);
+		Camera->move(100, 100);
 	}
 	POSITION pos[4];
 	unsigned short idxs[6];
@@ -82,7 +82,7 @@ void CDelegate::onInitialized(view::IPlatform *platform)
 {
 	TestNode *node = new TestNode(platform);
 	engine::CProjectionNode *project = new engine::CProjectionNode(platform);
-	project->acceptNode(node);
+	project->addChild(node, -1);
 	project->setRegion(model::Sizef(800.f, 480.f));
 	platform->getSceneManager()->changeRootNode(project);
 }
