@@ -11,11 +11,16 @@ namespace graphics{
 	class GLShaderDrawer : public CShaderDrawer
 	{
 	public:
+		virtual void setUniformValue(unsigned int l, void *ptr, unsigned int n, const char *sig);
+		virtual void setAttributeValue(unsigned int l, unsigned int offset, int n, const char *sig);
+		
 		virtual void setAttributeData(void *ptr, unsigned int total, unsigned int stride);
 		virtual void updateAttributeData(void * ptr, unsigned int start, unsigned int n);
 		// sig: GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE ...
 		virtual void setIndexs(void *indexs, unsigned int total, const char *sig);
 
+		virtual void setDrawType(unsigned int drawType);
+		
 		GLShaderDrawer(GLStateCacher *_statecacher, IShaderProgram *program);
 		virtual ~GLShaderDrawer();
 
@@ -24,12 +29,13 @@ namespace graphics{
 	private:
 		core::TAuto<GLStateCacher> StateCacher;
 
+		GLenum ElementType;
 		GLuint VertexBufferId;
 		GLuint IndexsBufferId;
 		unsigned int Stride;
 		unsigned int Total;
 		unsigned int IndexTotal;
-		std::string IndexSig;
+		GLenum IndexType;
 	};
 	
 };

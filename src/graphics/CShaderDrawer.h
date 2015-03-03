@@ -24,14 +24,12 @@ namespace graphics{
 		CShaderDrawer(IShaderProgram *program);
 		virtual ~CShaderDrawer();
 
-	protected:
-		core::TAuto<IShaderProgram> ShaderProgram;
-
 		struct UniformValue : public core::CRefObject
 		{
 			unsigned char *ptr;
 			unsigned int n;
 			std::string sig;
+			intptr_t ad[2]; // attach data
 			UniformValue(void *_ptr, unsigned int _n, const char *_sig);
 			~UniformValue();
 		};
@@ -40,8 +38,12 @@ namespace graphics{
 			unsigned int offset;
 			int n;
 			std::string sig;
+			intptr_t ad[2]; // attach data
 			AttributeValue(unsigned int _offset, int _n, const char *_sig);
 		};
+	protected:
+		core::TAuto<IShaderProgram> ShaderProgram;
+
 		std::map<unsigned int, core::TAuto<ITexture> > Textures;
 		std::map<unsigned int, core::TAuto<UniformValue> > Uniforms;
 		std::map<unsigned int, core::TAuto<AttributeValue> > Attributes;

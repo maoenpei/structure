@@ -7,6 +7,12 @@
 
 namespace graphics{
 
+	enum{
+		Draw_Triangle,
+		Draw_Line,
+		Draw_Point,
+	};
+
 	class IShaderDrawer : public virtual core::IRef
 	{
 	public:
@@ -21,6 +27,8 @@ namespace graphics{
 		virtual void updateAttributeData(void * ptr, unsigned int start, unsigned int n) = 0;
 		// sig: GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE ...
 		virtual void setIndexs(void *indexs, unsigned int total, const char *sig) = 0;
+
+		virtual void setDrawType(unsigned int drawType) = 0;
 	};
 	
 };
