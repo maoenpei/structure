@@ -12,7 +12,7 @@ namespace graphics{
 	public:
 		virtual IShaderProgram *getProgram() = 0;
 
-		virtual void setTexture(int index, ITexture *tex) = 0;
+		virtual void setTexture(ITexture *tex, int index) = 0;
 		// sig: 1fv, 1iv, 3fv ...
 		virtual void setUniformValue(unsigned int l, void *ptr, unsigned int n, const char *sig) = 0;
 		// sig: GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE ...
@@ -31,6 +31,7 @@ namespace graphics{
 #define SIG_USHORT		"ushort"
 #define SIG_FLOAT		"float"
 #define SIG_VEC2		"vec2"
+#define SIG_VEC4		"vec4"
 #define SIG_MAT4		"mat4"
 
 #endif

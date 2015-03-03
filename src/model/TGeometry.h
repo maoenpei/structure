@@ -81,7 +81,6 @@ namespace model{
 		T r, g, b;
 		Color3ch() : r(0), g(0), b(0){}
 		Color3ch(T _r, T _g, T _b) : r(_r), g(_g), b(_b){}
-		Color3ch(int _r, int _g, int _b) : r((T)_r/255), g((T)_g/255), b((T)_b/255){}
 	};
 
 	template<typename T>
@@ -90,7 +89,6 @@ namespace model{
 		T r, g, b, a;
 		Color4ch() : r(0), g(0), b(0), a(1){}
 		Color4ch(T _r, T _g, T _b, T _a) : r(_r), g(_g), b(_b), a(_a){}
-		Color4ch(int _r, int _g, int _b, int _a) : r((T)_r/255), g((T)_g/255), b((T)_b/255), a((T)_a/255){}
 	};
 
 	typedef Point2d<int> Pointi;

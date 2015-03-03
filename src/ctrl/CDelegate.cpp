@@ -8,6 +8,7 @@
 #include "graphics/IShaderProgram.h"
 #include "engine/CNodeCamera.h"
 #include "engine/CProjectionNode.h"
+#include "engine/CSpriteNode.h"
 
 const char vertexShader[] = 
 "attribute vec2 in_pos;\n"
@@ -63,10 +64,10 @@ public:
 		Drawer->setAttributeData(&pos, 4, sizeof(pos[0]));
 		Drawer->setIndexs(idxs, 6, SIG_USHORT);
 
-		Camera = new engine::CNodeCamera();
-		Camera->rotate(-3.141592653f / 6);
+//		Camera = new engine::CNodeCamera();
+//		Camera->rotate(-3.141592653f / 6);
 //		Camera->scale(1/400.f, 1/240.f);
-		Camera->move(100, 100);
+//		Camera->move(100, 100);
 	}
 	POSITION pos[4];
 	unsigned short idxs[6];
@@ -80,10 +81,12 @@ CDelegate::CDelegate()
 
 void CDelegate::onInitialized(view::IPlatform *platform)
 {
-	TestNode *node = new TestNode(platform);
+//	TestNode *node = new TestNode(platform);
+	engine::CSpriteNode *node = new engine::CSpriteNode(platform, "small_arrow.png");
+	node->attachColor(model::Color3f(1, 0, 0));
 	engine::CProjectionNode *project = new engine::CProjectionNode(platform);
-	project->addChild(node, -1);
 	project->setRegion(model::Sizef(800.f, 480.f));
+	project->addChild(node, -1);
 	platform->getSceneManager()->changeRootNode(project);
 }
 

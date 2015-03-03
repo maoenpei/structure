@@ -60,7 +60,7 @@ void CGraphicsCacher::removeTexture(const char * name)
 	}
 }
 
-IShaderProgram *CGraphicsCacher::cacheProgram(const char * vertex,const char * frag,const char * name)
+IShaderProgram *CGraphicsCacher::cacheProgram(const char *vertex, const char *frag, const char *transName, const char *name)
 {
 	std::map<std::string, core::TAuto<IShaderProgram> >::iterator it = Programs.find(name);
 	if (it != Programs.end()){
@@ -68,6 +68,9 @@ IShaderProgram *CGraphicsCacher::cacheProgram(const char * vertex,const char * f
 	}
 	core::TAuto<IShaderProgram> &pgm = Programs[name];
 	G->loadProgram(pgm, vertex, frag);
+	if (pgm){
+		pgm->setTransformName(transName);
+	}
 	return pgm;
 }
 

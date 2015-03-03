@@ -36,7 +36,7 @@ IShaderProgram *CShaderDrawer::getProgram()
 	return ShaderProgram;
 }
 
-void CShaderDrawer::setTexture(int index, ITexture *tex)
+void CShaderDrawer::setTexture(ITexture *tex, int index)
 {
 	Textures[index] = tex;
 }
@@ -69,6 +69,8 @@ __construct_global(SHADER_DRAWER_SIGS,{
 	sigTypes[SIG_FLOAT] = sig_float;
 	sigSizes[SIG_VEC2] = sizeof(float) * 2;
 	sigTypes[SIG_VEC2] = sig_vec2;
+	sigSizes[SIG_VEC4] = sizeof(float) * 4;
+	sigTypes[SIG_VEC4] = sig_vec4;
 	sigSizes[SIG_MAT4] = sizeof(float) * 4 * 4;
 	sigTypes[SIG_MAT4] = sig_mat4;
 });

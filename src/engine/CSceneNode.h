@@ -24,6 +24,7 @@ namespace engine{
 
 	protected:
 		core::TAuto<graphics::IGraphics> G;
+		core::TAuto<graphics::IGraphicsCacher> Cacher;
 		core::TAuto<graphics::ITransformer> Transformer;
 		
 		core::TAuto<INodeCamera> Camera;

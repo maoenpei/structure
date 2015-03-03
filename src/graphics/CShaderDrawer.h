@@ -15,7 +15,7 @@ namespace graphics{
 	public:
 		virtual IShaderProgram *getProgram();
 
-		virtual void setTexture(int index, ITexture *tex);
+		virtual void setTexture(ITexture *tex, int index);
 		// sig: 1fv, 1iv, 3fv ...
 		virtual void setUniformValue(unsigned int l, void *ptr, unsigned int n, const char *sig);
 		// sig: GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE ...
@@ -57,6 +57,7 @@ enum{
 	sig_ushort,
 	sig_float,
 	sig_vec2,
+	sig_vec4,
 	sig_mat4,
 	sig_max
 };

@@ -10,6 +10,7 @@ namespace engine{
 CSceneNode::CSceneNode(view::IPlatform *platform)
 {
 	G = platform->getGraphics();
+	Cacher = platform->getCacher();
 	Transformer = G->getTransformer();
 }
 

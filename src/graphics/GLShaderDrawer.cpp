@@ -91,6 +91,9 @@ void GLShaderDrawer::drawAll()
 				case sig_vec2:
 					glUniform2fv(it->first, dat->n, (GLfloat *)dat->ptr);
 					break;
+				case sig_vec4:
+					glUniform4fv(it->first, dat->n, (GLfloat *)dat->ptr);
+					break;
 				case sig_mat4:
 					glUniformMatrix4fv(it->first, dat->n, GL_FALSE, (GLfloat *)dat->ptr);
 					break;

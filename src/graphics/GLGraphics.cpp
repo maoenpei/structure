@@ -20,6 +20,9 @@ void GLGraphics::initAPIs()
 	assert(glewInit() == GLEW_OK);
 	assert(GLEW_ARB_vertex_shader && GLEW_ARB_fragment_shader);
 	assert(glewIsSupported("GL_VERSION_2_0"));
+	glClearColor(1, 1, 1, 0);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 }
 
 ITransformer *GLGraphics::getTransformer()

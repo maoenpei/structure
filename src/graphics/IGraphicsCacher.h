@@ -14,7 +14,7 @@ namespace graphics{
 		virtual ITexture *findTexture(const char *name) = 0;
 		virtual void removeTexture(const char *name) = 0;
 
-		virtual IShaderProgram *cacheProgram(const char *vertex, const char *frag, const char *name) = 0;
+		virtual IShaderProgram *cacheProgram(const char *vertex, const char *frag, const char *transName, const char *name) = 0;
 		virtual IShaderProgram *findProgram(const char *name) = 0;
 		virtual void removeProgram(const char *name) = 0;
 	};
