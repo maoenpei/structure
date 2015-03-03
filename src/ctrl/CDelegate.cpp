@@ -20,6 +20,9 @@ void CDelegate::onInitialized(view::IPlatform *platform)
 {
 	engine::CSpriteNode *node = new engine::CSpriteNode(platform, "small_arrow.png");
 	node->attachColor(model::Color3f(1, 0, 0));
+	node->setAnchorPoint(model::Sizef(0.5f, 0.5f));
+	engine::INodeCamera *camera = node->getCamera();
+	camera->move(100, 100);
 	engine::CProjectionNode *project = new engine::CProjectionNode(platform);
 	project->setRegion(model::Sizef(800.f, 480.f));
 	project->addChild(node, -1);

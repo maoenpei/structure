@@ -120,14 +120,14 @@ void CSpriteNode::raw_draw()
 	if (DataDirty){
 		DataDirty = false;
 		const model::Sizei &siz = Texture->getSize();
-		Datas[0].pt.x = 0;
-		Datas[0].pt.y = 0;
-		Datas[1].pt.x = (float)siz.w;
-		Datas[1].pt.y = 0;
-		Datas[2].pt.x = 0;
-		Datas[2].pt.y = (float)siz.h;
-		Datas[3].pt.x = (float)siz.w;
-		Datas[3].pt.y = (float)siz.h;
+		Datas[0].pt.x = siz.w * (-Anchor.w);
+		Datas[0].pt.y = siz.h * (-Anchor.h);
+		Datas[1].pt.x = siz.w * (1-Anchor.w);
+		Datas[1].pt.y = siz.h * (-Anchor.h);
+		Datas[2].pt.x = siz.w * (-Anchor.w);
+		Datas[2].pt.y = siz.h * (1-Anchor.h);
+		Datas[3].pt.x = siz.w * (1-Anchor.w);
+		Datas[3].pt.y = siz.h * (1-Anchor.h);
 		Drawer->updateAttributeData(Datas, 0, 4);
 	}
 
