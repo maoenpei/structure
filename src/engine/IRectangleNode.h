@@ -6,10 +6,12 @@
 
 namespace engine{
 
-	class IRectangeNode : public virtual ISceneNode
+	class IRectangleNode : public virtual ISceneNode
 	{
 	public:
 		virtual const model::Sizei &getSize() = 0;
+		virtual void setSize(const model::Sizei &siz) = 0;
+		
 		virtual void setAnchorPoint(const model::Sizef &anchor) = 0;
 		virtual const model::Sizef &getAnchorPoint() = 0;
 	};

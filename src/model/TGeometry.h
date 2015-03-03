@@ -89,6 +89,7 @@ namespace model{
 		T r, g, b, a;
 		Color4ch() : r(0), g(0), b(0), a(1){}
 		Color4ch(T _r, T _g, T _b, T _a) : r(_r), g(_g), b(_b), a(_a){}
+		Color4ch(const Color3ch<T> &col) : r(col.r), g(col.g), b(col.b), a(1){}
 	};
 
 	typedef Point2d<int> Pointi;

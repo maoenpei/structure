@@ -188,11 +188,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\CColoredNode.cpp"
+				RelativePath="..\..\src\engine\CColoredPanelNode.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\CColoredNode.h"
+				RelativePath="..\..\src\engine\CColoredPanelNode.h"
 				>
 			</File>
 			<File
@@ -313,6 +313,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\engine\CProjectionNode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CRectangleNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\engine\CRectangleNode.h"
 				>
 			</File>
 			<File
@@ -500,7 +508,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\engine\IRectangeNode.h"
+				RelativePath="..\..\src\engine\IRectangleNode.h"
 				>
 			</File>
 			<File

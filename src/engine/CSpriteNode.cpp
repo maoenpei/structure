@@ -7,8 +7,6 @@
 
 namespace engine{
 
-static model::Sizei SizeZero;
-
 static const char spriteVertexShader[] = 
 "attribute vec2 in_pos;\n"
 "attribute vec2 in_tex;\n"
@@ -33,16 +31,14 @@ static const char spriteFragShader[] =
 ;
 
 CSpriteNode::CSpriteNode(view::IPlatform *platform, const char *img_path)
-	: CColoredNode(platform)
-	, DataDirty(true)
+	: CRectangleNode(platform)
+	, UniqueColor(1, 1, 1, 1)
 {
-	UniqueColor.r = 1;
-	UniqueColor.g = 1;
-	UniqueColor.b = 1;
-	UniqueColor.a = 1;
 	Camera = new engine::CNodeCamera();
 	Texture = Cacher->cacheTexture(img_path, img_path);
 	if (Texture){
+		RectSize = Texture->getSize();
+		
 		graphics::IShaderProgram *program = Cacher->cacheProgram(spriteVertexShader, spriteFragShader, "uni_trans", "CSpriteNodeShader");
 		program->createDrawer(Drawer);
 
@@ -52,6 +48,14 @@ CSpriteNode::CSpriteNode(view::IPlatform *platform, const char *img_path)
 		* 0-1
 		* order: 0-1-2, 1-3-2
 		*/
+		Datas[0].pt.x = 0;
+		Datas[0].pt.y = 0;
+		Datas[1].pt.x = (float)RectSize.w;
+		Datas[1].pt.y = 0;
+		Datas[2].pt.x = 0;
+		Datas[2].pt.y = (float)RectSize.h;
+		Datas[3].pt.x = (float)RectSize.w;
+		Datas[3].pt.y = (float)RectSize.h;
 		Datas[0].tex.u = 0;
 		Datas[0].tex.v = 1;
 		Datas[1].tex.u = 1;
@@ -85,53 +89,26 @@ CSpriteNode::CSpriteNode(view::IPlatform *platform, const char *img_path)
 	}
 }
 
-const model::Sizei &CSpriteNode::getSize()
+void CSpriteNode::setSize(const model::Sizei &siz)
 {
-	return (Texture ? Texture->getSize() : SizeZero);
-}
-
-void CSpriteNode::setAnchorPoint(const model::Sizef &anchor)
-{
-	Anchor = anchor;
-	if (Texture){
-		DataDirty = true;
-	}
-}
-
-const model::Sizef &CSpriteNode::getAnchorPoint()
-{
-	return Anchor;
+	CRectangleNode::setSize(siz);
+	Datas[1].pt.x = (float)RectSize.w;
+	Datas[2].pt.y = (float)RectSize.h;
+	Datas[3].pt.x = (float)RectSize.w;
+	Datas[3].pt.y = (float)RectSize.h;
+	Drawer->updateAttributeData(Datas, 1, 3);
 }
 
 void CSpriteNode::attachColor(const model::Color3f &color)
 {
-	CColoredNode::attachColor(color);
+	UniqueColor = color;
 	Drawer->setUniformValue(ColorDataId, &UniqueColor, 1, SIG_VEC4);
 }
 
 void CSpriteNode::attachColor(const model::Color4f &color)
 {
-	CColoredNode::attachColor(color);
+	UniqueColor = color;
 	Drawer->setUniformValue(ColorDataId, &UniqueColor, 1, SIG_VEC4);
-}
-
-void CSpriteNode::raw_draw()
-{
-	if (DataDirty){
-		DataDirty = false;
-		const model::Sizei &siz = Texture->getSize();
-		Datas[0].pt.x = siz.w * (-Anchor.w);
-		Datas[0].pt.y = siz.h * (-Anchor.h);
-		Datas[1].pt.x = siz.w * (1-Anchor.w);
-		Datas[1].pt.y = siz.h * (-Anchor.h);
-		Datas[2].pt.x = siz.w * (-Anchor.w);
-		Datas[2].pt.y = siz.h * (1-Anchor.h);
-		Datas[3].pt.x = siz.w * (1-Anchor.w);
-		Datas[3].pt.y = siz.h * (1-Anchor.h);
-		Drawer->updateAttributeData(Datas, 0, 4);
-	}
-
-	CColoredNode::raw_draw();
 }
 
 };
