@@ -6,6 +6,7 @@
 #include "core/TAuto.h"
 #include "GLStateCacher.h"
 #include "model/IImage.h"
+#include "model/TGeometry.h"
 
 namespace graphics{
 
@@ -13,6 +14,7 @@ namespace graphics{
 	{
 	public:
 		GLTexture(GLStateCacher *_statecacher, model::IImage *image);
+		GLTexture(GLStateCacher *_statecacher, const model::Sizei &siz);
 		virtual ~GLTexture();
 		
 		virtual const model::Sizei &getSize();
@@ -22,6 +24,7 @@ namespace graphics{
 		GLuint TextureId;
 		model::Sizei Size;
 		core::TAuto<GLStateCacher> StateCacher;
+		friend class GLFramebuffer;
 	};
 	
 };

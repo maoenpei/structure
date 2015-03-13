@@ -388,6 +388,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\graphics\GLFramebuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\GLFramebuffer.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\graphics\GLGraphics.cpp"
 				>
 			</File>
@@ -432,11 +440,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\core\IData.h"
+				RelativePath="..\..\src\engine\IColoredNode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\ctrl\IDelegate.h"
+				RelativePath="..\..\src\core\IData.h"
 				>
 			</File>
 			<File
@@ -449,6 +457,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\IFileOutput.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\graphics\IFramebuffer.h"
 				>
 			</File>
 			<File
@@ -572,6 +584,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\engine\TAttribData.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\core\TAuto.h"
 				>
 			</File>
@@ -585,6 +601,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\graphics\TMatrix.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\core\TUtils.h"
 				>
 			</File>
 			<File

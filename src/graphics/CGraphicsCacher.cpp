@@ -39,7 +39,7 @@ ITexture *CGraphicsCacher::cacheTexture(const char *path, const char * name)
 		return 0;
 	}
 	core::TAuto<ITexture> &tex = Textures[name];
-	G->loadTexture(tex, img);
+	G->createTexture(tex, img);
 	return tex;
 }
 
@@ -67,7 +67,7 @@ IShaderProgram *CGraphicsCacher::cacheProgram(const char *vertex, const char *fr
 		return it->second;
 	}
 	core::TAuto<IShaderProgram> &pgm = Programs[name];
-	G->loadProgram(pgm, vertex, frag);
+	G->createProgram(pgm, vertex, frag);
 	if (pgm){
 		pgm->setTransformName(transName);
 	}

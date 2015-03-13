@@ -6,6 +6,7 @@
 #include "core/TAuto.h"
 #include <glew.h>
 #include "GLStateCacher.h"
+#include <stack>
 
 namespace graphics{
 
@@ -14,10 +15,16 @@ namespace graphics{
 	public:
 		virtual ITransformer *getTransformer();
 		
-		virtual void loadTexture(core::TAuto<ITexture> &texture, model::IImage *image);
-		virtual void loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag);
+		virtual void createTexture(core::TAuto<ITexture> &texture, model::Sizei &siz);
+		virtual void createTexture(core::TAuto<ITexture> &texture, model::IImage *image);
+		virtual void createProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag);
 
-		virtual void cleanBuffer();
+		virtual void createBuffer(core::TAuto<IFramebuffer> &fb, const model::Sizei &siz);
+		virtual IFramebuffer *getBuffer();
+		virtual void pushBuffer(IFramebuffer *buffer);
+		virtual void popBuffer();
+
+		virtual void clearBuffer();
 		virtual void pipeline(IShaderDrawer *drawer);
 
 		void initAPIs();
@@ -26,6 +33,8 @@ namespace graphics{
 	private:
 		core::TAuto<ITransformer> Transformer;
 		core::TAuto<GLStateCacher> StateCacher;
+		core::TAuto<IFramebuffer> FrameBuffer;
+		std::stack<core::TAuto<IFramebuffer> > CachedFramebuffers;
 	};
 	
 };

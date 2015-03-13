@@ -28,13 +28,17 @@ namespace graphics{
 
 		void setAttribStates(GLint arr[], int n);
 
+		void bindFramebuffer(GLuint uFBO);
+		void deleteFramebuffer(GLuint uFBO);
+
 	private:
 		GLuint BindTextures[MAX_TEXTURES];
 		int TextureIndex;
 		GLuint UsingProgram;
-		GLuint BindBuffer;
-		GLuint BindIndexs;
+		GLuint CurrentBuffer;
+		GLuint CurrentIndexs;
 		std::set<GLint> AttributeStates;
+		GLuint CurrentFramebuffer;
 	};
 	
 };

@@ -10,6 +10,7 @@
 #include "engine/CProjectionNode.h"
 #include "engine/CSpriteNode.h"
 #include "engine/CColoredPanelNode.h"
+#include "graphics/IFramebuffer.h"
 
 namespace ctrl{
 
@@ -19,6 +20,9 @@ CDelegate::CDelegate()
 
 void CDelegate::onInitialized(view::IPlatform *platform)
 {
+	core::TAuto<graphics::IFramebuffer> fb;
+	platform->getGraphics()->createBuffer(fb, model::Sizei(200, 100));
+	fb->openDepth(3);
 	engine::CColoredPanelNode *node2 = new engine::CColoredPanelNode(platform, model::Sizei(128, 128), model::Color4f(1, 0, 0, 1));
 	engine::CSpriteNode *node = new engine::CSpriteNode(platform, "small_arrow.png");
 //	node2->attachColor(model::Color3f(1, 0, 0));

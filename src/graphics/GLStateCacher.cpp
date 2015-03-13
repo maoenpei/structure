@@ -8,9 +8,10 @@ namespace graphics{
 
 GLStateCacher::GLStateCacher()
 	: UsingProgram(0)
-	, BindBuffer(0)
-	, BindIndexs(0)
+	, CurrentBuffer(0)
+	, CurrentIndexs(0)
 	, TextureIndex(0)
+	, CurrentFramebuffer(0)
 {
 	memset(BindTextures, 0, sizeof(BindTextures));
 }
@@ -68,17 +69,17 @@ void GLStateCacher::deleteProgram(GLuint uProg)
 
 void GLStateCacher::bindBuffer(GLuint uBuf)
 {
-	if (uBuf != BindBuffer){
+	if (uBuf != CurrentBuffer){
 		glBindBuffer(GL_ARRAY_BUFFER, uBuf);
-		BindBuffer = uBuf;
+		CurrentBuffer = uBuf;
 	}
 }
 
 void GLStateCacher::deleteBuffer(GLuint uBuf)
 {
 	if (uBuf){
-		if (uBuf == BindBuffer){
-			BindBuffer = 0;
+		if (uBuf == CurrentBuffer){
+			CurrentBuffer = 0;
 		}
 		glDeleteBuffers(1, &uBuf);
 	}
@@ -86,17 +87,17 @@ void GLStateCacher::deleteBuffer(GLuint uBuf)
 
 void GLStateCacher::bindIndexs(GLuint uIndexs)
 {
-	if (uIndexs != BindIndexs){
+	if (uIndexs != CurrentIndexs){
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, uIndexs);
-		BindIndexs = uIndexs;
+		CurrentIndexs = uIndexs;
 	}
 }
 
 void GLStateCacher::deleteIndexs(GLuint uIndexs)
 {
 	if (uIndexs){
-		if (uIndexs == BindIndexs){
-			BindIndexs = 0;
+		if (uIndexs == CurrentIndexs){
+			CurrentIndexs = 0;
 		}
 		glDeleteBuffers(1, &uIndexs);
 	}
@@ -119,6 +120,24 @@ void GLStateCacher::setAttribStates(GLint arr[], int n)
 		}
 	}
 	AttributeStates.swap(values);
+}
+
+void GLStateCacher::bindFramebuffer(GLuint uFBO)
+{
+	if (uFBO != CurrentFramebuffer){
+		glBindFramebuffer(GL_FRAMEBUFFER, uFBO);
+		CurrentFramebuffer = uFBO;
+	}
+}
+
+void GLStateCacher::deleteFramebuffer(GLuint uFBO)
+{
+	if (uFBO){
+		if (CurrentFramebuffer == uFBO){
+			CurrentFramebuffer = 0;
+		}
+		glDeleteFramebuffers(1, &uFBO);
+	}
 }
 
 };

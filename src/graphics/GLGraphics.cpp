@@ -5,6 +5,7 @@
 #include "GLTexture.h"
 #include "GLShaderProgram.h"
 #include "GLShaderDrawer.h"
+#include "GLFramebuffer.h"
 #include <assert.h>
 
 namespace graphics{
@@ -13,6 +14,7 @@ GLGraphics::GLGraphics()
 {
 	Transformer = new CTransformer();
 	StateCacher = new GLStateCacher();
+	FrameBuffer = new GLFramebuffer(StateCacher);
 }
 
 void GLGraphics::initAPIs()
@@ -20,9 +22,8 @@ void GLGraphics::initAPIs()
 	assert(glewInit() == GLEW_OK);
 	assert(GLEW_ARB_vertex_shader && GLEW_ARB_fragment_shader);
 	assert(glewIsSupported("GL_VERSION_2_0"));
-	glClearColor(1, 1, 1, 0);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 ITransformer *GLGraphics::getTransformer()
@@ -30,19 +31,48 @@ ITransformer *GLGraphics::getTransformer()
 	return Transformer;
 }
 
-void GLGraphics::loadTexture(core::TAuto<ITexture> &texture, model::IImage *image)
+void GLGraphics::createTexture(core::TAuto<ITexture> &texture, model::Sizei &siz)
+{
+	texture = new GLTexture(StateCacher, siz);
+}
+
+void GLGraphics::createTexture(core::TAuto<ITexture> &texture, model::IImage *image)
 {
 	texture = new GLTexture(StateCacher, image);
 }
 
-void GLGraphics::loadProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag)
+void GLGraphics::createProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag)
 {
 	program = new GLShaderProgram(StateCacher, vertex, frag);
 }
 
-void GLGraphics::cleanBuffer()
+void GLGraphics::createBuffer(core::TAuto<IFramebuffer> &fb, const model::Sizei &siz)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	fb = new GLFramebuffer(StateCacher, siz);
+}
+
+IFramebuffer *GLGraphics::getBuffer()
+{
+	return FrameBuffer;
+}
+
+void GLGraphics::pushBuffer(IFramebuffer * buffer)
+{
+	CachedFramebuffers.push(FrameBuffer);
+	FrameBuffer = buffer;
+}
+
+void GLGraphics::popBuffer()
+{
+	if (CachedFramebuffers.size() > 0){
+		FrameBuffer = CachedFramebuffers.top();
+		CachedFramebuffers.pop();
+	}
+}
+
+void GLGraphics::clearBuffer()
+{
+	FrameBuffer->cast<GLFramebuffer>()->clear();
 }
 
 void GLGraphics::pipeline(IShaderDrawer * drawer)
