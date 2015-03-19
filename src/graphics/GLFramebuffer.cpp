@@ -1,6 +1,7 @@
 
 
 #include "GLFramebuffer.h"
+#include <assert.h>
 
 namespace graphics{
 
@@ -9,6 +10,7 @@ GLFramebuffer::GLFramebuffer(GLStateCacher *_statecacher)
 	, FramebufferId(0)
 	, ClearField(GL_COLOR_BUFFER_BIT)
 	, DefaultDepth(0)
+	, ColorBufferId(0)
 	, DepthBufferId(0)
 {
 }
@@ -16,18 +18,27 @@ GLFramebuffer::GLFramebuffer(GLStateCacher *_statecacher)
 GLFramebuffer::GLFramebuffer(GLStateCacher *_statecacher, const model::Sizei &siz)
 	: StateCacher(_statecacher)
 	, ClearField(GL_COLOR_BUFFER_BIT)
+	, Size(siz)
 {
-	AttachTexture = new GLTexture(StateCacher, siz);
-	
 	glGenFramebuffers(1, &FramebufferId);
 	StateCacher->bindFramebuffer(FramebufferId);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, AttachTexture->TextureId, 0);
+	
+	glGenRenderbuffers(1, &ColorBufferId);
+	glBindRenderbuffer(GL_RENDERBUFFER, ColorBufferId);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA8, (GLsizei)Size.w, (GLsizei)Size.h);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, ColorBufferId);
+	assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
+	
+	//	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, AttachTexture->TextureId, 0);
 }
 
 GLFramebuffer::~GLFramebuffer()
 {
 	if (DepthBufferId){
 		glDeleteRenderbuffers(1, &DepthBufferId);
+	}
+	if (ColorBufferId){
+		glDeleteRenderbuffers(1, &ColorBufferId);
 	}
 	StateCacher->deleteFramebuffer(FramebufferId);
 }
@@ -43,19 +54,14 @@ void GLFramebuffer::openDepth(float defDepth)
 		ClearField |= GL_DEPTH_BUFFER_BIT;
 		DefaultDepth = defDepth;
 
-		GLenum err = glGetError();
 		StateCacher->bindFramebuffer(FramebufferId);
-		err = glGetError();
+		
 		glGenRenderbuffers(1, &DepthBufferId);
-		err = glGetError();
 		glBindRenderbuffer(GL_RENDERBUFFER, DepthBufferId);
-		err = glGetError();
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, (GLsizei)Size.w, (GLsizei)Size.h);
-		err = glGetError();
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, DepthBufferId);
-		err = glGetError();
+		assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 	}
-	GLenum ret = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 }
 
 void GLFramebuffer::clear()

@@ -24,7 +24,7 @@ namespace graphics{
 		GLuint TextureId;
 		model::Sizei Size;
 		core::TAuto<GLStateCacher> StateCacher;
-		friend class GLFramebuffer;
+//		friend class GLFramebuffer;
 	};
 	
 };

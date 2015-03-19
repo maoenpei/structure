@@ -31,7 +31,7 @@ namespace graphics{
 		float DefaultDepth;
 
 		// contained objects
-		core::TAuto<GLTexture> AttachTexture;
+		GLuint ColorBufferId;
 		GLuint DepthBufferId;
 		
 		GLuint FramebufferId;
