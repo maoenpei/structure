@@ -7,6 +7,7 @@
 #include <glew.h>
 #include "GLStateCacher.h"
 #include <stack>
+#include "GLFramebuffer.h"
 
 namespace graphics{
 
@@ -33,8 +34,8 @@ namespace graphics{
 	private:
 		core::TAuto<ITransformer> Transformer;
 		core::TAuto<GLStateCacher> StateCacher;
-		core::TAuto<IFramebuffer> FrameBuffer;
-		std::stack<core::TAuto<IFramebuffer> > CachedFramebuffers;
+		core::TAuto<GLFramebuffer> FrameBuffer;
+		std::stack<core::TAuto<GLFramebuffer> > CachedFramebuffers;
 	};
 	
 };

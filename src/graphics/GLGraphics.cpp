@@ -5,7 +5,6 @@
 #include "GLTexture.h"
 #include "GLShaderProgram.h"
 #include "GLShaderDrawer.h"
-#include "GLFramebuffer.h"
 #include <assert.h>
 
 namespace graphics{
@@ -59,7 +58,7 @@ IFramebuffer *GLGraphics::getBuffer()
 void GLGraphics::pushBuffer(IFramebuffer * buffer)
 {
 	CachedFramebuffers.push(FrameBuffer);
-	FrameBuffer = buffer;
+	FrameBuffer = buffer->cast<GLFramebuffer>();
 }
 
 void GLGraphics::popBuffer()
@@ -72,7 +71,7 @@ void GLGraphics::popBuffer()
 
 void GLGraphics::clearBuffer()
 {
-	FrameBuffer->cast<GLFramebuffer>()->clear();
+	FrameBuffer->clear();
 }
 
 void GLGraphics::pipeline(IShaderDrawer * drawer)

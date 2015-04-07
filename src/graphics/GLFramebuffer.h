@@ -10,7 +10,7 @@
 
 namespace graphics{
 
-	class GLFramebuffer : core::CRefObject, public virtual IFramebuffer
+	class GLFramebuffer : public core::CRefObject, public virtual IFramebuffer
 	{
 	public:
 		virtual void setBackground(const model::Color4f &color);

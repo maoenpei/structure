@@ -4,24 +4,36 @@
 
 namespace view{
 
-enum {
-	RunType_Runnable = 1,
-	RunType_IRunnable,
-	
-};
-
 struct CLoopManager::LoopEntry : public core::CRefObject
 {
 	unsigned int key; // loop key
 	core::TAuto<core::IRef> runnable; // loop item
 	float iterm; // loop interval
 	float timeleft; // loop time left
-	unsigned char runType; // counter
 	bool repeat; // is loop repeat
 	bool delMark; // is marked to delete
 	bool addMark; // is marked to add
 
-	LoopEntry() : key(0), iterm(0), timeleft(0), runType(0), repeat(false), delMark(false), addMark(true) {}
+	LoopEntry(core::IRef *_runnable) : runnable(_runnable), key(0), iterm(0), timeleft(0), repeat(false), delMark(false), addMark(true) {}
+	virtual void run(int v1){}
+};
+
+struct CLoopManager::LoopEntryNone : public CLoopManager::LoopEntry
+{
+	core::IRunnable *nRun;
+	virtual void run(int v1){
+		nRun->run();
+	}
+	LoopEntryNone(core::IRunnable *_run) : LoopEntry(_run), nRun(_run){}
+};
+
+struct CLoopManager::LoopEntryInt : public CLoopManager::LoopEntry
+{
+	core::IRunnableInt *nRun;
+	virtual void run(int v1){
+		nRun->run(v1);
+	}
+	LoopEntryInt(core::IRunnableInt *_run): LoopEntry(_run), nRun(_run){}
 };
 
 CLoopManager::CLoopManager()
@@ -40,17 +52,13 @@ unsigned int CLoopManager::appendEntry(LoopEntry * entry)
 
 unsigned int CLoopManager::addLoopItem( core::IRunnable * runnable)
 {
-	LoopEntry *entry = new LoopEntry();
-	entry->runnable = runnable;
-	entry->runType = RunType_Runnable;
+	LoopEntry *entry = new LoopEntryNone(runnable);
 	return appendEntry(entry);
 }
 
 unsigned int CLoopManager::addLoopItem( core::IRunnableInt * irunnable, float dt, bool repeat)
 {
-	LoopEntry *entry = new LoopEntry();
-	entry->runnable = irunnable;
-	entry->runType = RunType_IRunnable;
+	LoopEntry *entry = new LoopEntryInt(irunnable);
 	entry->iterm = (dt < 0 ? 0 : dt);
 	entry->repeat = repeat;
 	return appendEntry(entry);
@@ -90,14 +98,7 @@ void CLoopManager::doLoop(int milliKey)
 					entry->timeleft += entry->iterm * counter;
 				}
 				if (entry->runnable){
-					switch(entry->runType){
-					case RunType_Runnable:
-						entry->runnable->cast<core::IRunnable>()->run();
-						break;
-					case RunType_IRunnable:
-						entry->runnable->cast<core::IRunnableInt>()->run(counter);
-						break;
-					}
+					entry->run(counter);
 				}
 				if (! entry->repeat){
 					removeLoopKey(entry->key);

@@ -23,6 +23,8 @@ namespace view{
 		int lastMilli;
 		
 		struct LoopEntry;
+		struct LoopEntryNone;
+		struct LoopEntryInt;
 		typedef std::map<unsigned int, core::TAuto<LoopEntry> > LoopMap;
 		typedef std::list<core::TAuto<LoopEntry> > LoopList;
 		LoopMap MapDatas;

@@ -21,8 +21,8 @@ namespace graphics{
 		virtual void createTexture(core::TAuto<ITexture> &texture, model::Sizei &siz) = 0;
 		virtual void createTexture(core::TAuto<ITexture> &texture, model::IImage *image) = 0;
 		virtual void createProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag) = 0;
-
 		virtual void createBuffer(core::TAuto<IFramebuffer> &fb, const model::Sizei &siz) = 0; // create offline buffer
+		
 		virtual IFramebuffer *getBuffer() = 0;
 		virtual void pushBuffer(IFramebuffer *buffer) = 0;
 		virtual void popBuffer() = 0;
