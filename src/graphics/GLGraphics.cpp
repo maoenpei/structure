@@ -69,7 +69,7 @@ void GLGraphics::popBuffer()
 	}
 }
 
-void GLGraphics::clearBuffer()
+void GLGraphics::clear()
 {
 	FrameBuffer->clear();
 }

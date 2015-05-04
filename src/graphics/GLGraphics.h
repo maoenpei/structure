@@ -25,7 +25,7 @@ namespace graphics{
 		virtual void pushBuffer(IFramebuffer *buffer);
 		virtual void popBuffer();
 
-		virtual void clearBuffer();
+		virtual void clear();
 		virtual void pipeline(IShaderDrawer *drawer);
 
 		void initAPIs();

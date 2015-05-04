@@ -17,7 +17,7 @@ void CSceneManager::changeRootNode(ISceneNode * node)
 
 void CSceneManager::doDraw()
 {
-	G->clearBuffer();
+	G->clear();
 	RootNode->draw();
 }
 

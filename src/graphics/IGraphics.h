@@ -16,18 +16,22 @@ namespace graphics{
 	class IGraphics : public virtual core::IRef
 	{
 	public:
+		// transformer
 		virtual ITransformer *getTransformer() = 0;
 
+		// create graphics object
 		virtual void createTexture(core::TAuto<ITexture> &texture, model::Sizei &siz) = 0;
 		virtual void createTexture(core::TAuto<ITexture> &texture, model::IImage *image) = 0;
 		virtual void createProgram(core::TAuto<IShaderProgram> &program, const char *vertex, const char *frag) = 0;
 		virtual void createBuffer(core::TAuto<IFramebuffer> &fb, const model::Sizei &siz) = 0; // create offline buffer
-		
+
+		// framebuffer stack
 		virtual IFramebuffer *getBuffer() = 0;
 		virtual void pushBuffer(IFramebuffer *buffer) = 0;
 		virtual void popBuffer() = 0;
 
-		virtual void clearBuffer() = 0;
+		// affect framebuffer
+		virtual void clear() = 0;
 		virtual void pipeline(IShaderDrawer *drawer) = 0;
 	};
 	
